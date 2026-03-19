@@ -15,6 +15,7 @@ export default function HomePage() {
             <Typography
               variant="h2"
               sx={{
+                color: "text.primary",
                 fontWeight: 800,
                 mb: 2,
                 fontSize: { xs: "2.2rem", md: "3.5rem" },
@@ -25,8 +26,8 @@ export default function HomePage() {
 
             <Typography
               variant="h6"
-              color="text.secondary"
               sx={{
+                color: "text.secondary",
                 maxWidth: 800,
                 mx: "auto",
                 fontWeight: 400,
@@ -65,10 +66,14 @@ export default function HomePage() {
                 }}
               >
                 <CardContent>
-                  <Typography variant="h5" fontWeight={700} gutterBottom>
+                  <Typography
+                    variant="h5"
+                    gutterBottom
+                    sx={{ color: "text.primary", fontWeight: 700 }}
+                  >
                     Projects
                   </Typography>
-                  <Typography color="text.secondary">
+                  <Typography sx={{ color: "text.secondary" }}>
                     Showcase repositories, research work, student developments,
                     and practical cybersecurity implementations.
                   </Typography>
@@ -87,10 +92,14 @@ export default function HomePage() {
                 }}
               >
                 <CardContent>
-                  <Typography variant="h5" fontWeight={700} gutterBottom>
+                  <Typography
+                    variant="h5"
+                    gutterBottom
+                    sx={{ color: "text.primary", fontWeight: 700 }}
+                  >
                     Resources
                   </Typography>
-                  <Typography color="text.secondary">
+                  <Typography sx={{ color: "text.secondary" }}>
                     Organize learning materials, guides, documentation, and
                     future teaching content in one place.
                   </Typography>
@@ -109,10 +118,14 @@ export default function HomePage() {
                 }}
               >
                 <CardContent>
-                  <Typography variant="h5" fontWeight={700} gutterBottom>
+                  <Typography
+                    variant="h5"
+                    gutterBottom
+                    sx={{ color: "text.primary", fontWeight: 700 }}
+                  >
                     Community
                   </Typography>
-                  <Typography color="text.secondary">
+                  <Typography sx={{ color: "text.secondary" }}>
                     Build a stronger public-facing presence for ELTE
                     Cybersecurity with a clean and modern website.
                   </Typography>

@@ -57,7 +57,6 @@ export default function RepoPage({ content }: RepoPageProps) {
             borderLeftColor: `${theme.palette.divider} !important`,
           },
 
-          // inline code only
           "& :not(pre) > code": {
             color:
               theme.palette.mode === "light"
@@ -71,17 +70,12 @@ export default function RepoPage({ content }: RepoPageProps) {
             padding: "0.15em 0.4em",
           },
 
-          // code block container
           "& pre": {
-            backgroundColor:
-              theme.palette.mode === "light"
-                ? "rgba(0,0,0,0.04)"
-                : "#0d1117",
+            backgroundColor: "#0d1117 !important",
             borderRadius: 2,
             overflowX: "auto",
           },
 
-          // do not override syntax colors inside fenced blocks
           "& pre code": {
             backgroundColor: "transparent !important",
             color: "inherit !important",
