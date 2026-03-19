@@ -1,7 +1,21 @@
 import { Box, Card, CardContent, Link, Stack, Typography } from "@mui/material";
 import type { AboutPerson } from "../../../types";
 
-const DEFAULT_AVATAR = "/avatars/default_avatar.png";
+const DEFAULT_AVATAR = "avatars/default_avatar.png";
+
+function resolveAssetPath(path?: string | null): string {
+  if (!path) {
+    return `${import.meta.env.BASE_URL}${DEFAULT_AVATAR}`;
+  }
+
+  if (/^(https?:)?\/\//i.test(path) || path.startsWith("data:")) {
+    return path;
+  }
+
+  const normalizedPath = path.startsWith("/") ? path.slice(1) : path;
+
+  return `${import.meta.env.BASE_URL}${normalizedPath}`;
+}
 
 interface AboutCardProps {
   person: AboutPerson;
@@ -51,10 +65,10 @@ export default function AboutCard({ person }: AboutCardProps) {
         >
           <Box
             component="img"
-            src={person.picture || DEFAULT_AVATAR}
+            src={resolveAssetPath(person.picture)}
             alt={fullName}
             onError={(e) => {
-              e.currentTarget.src = DEFAULT_AVATAR;
+              e.currentTarget.src = resolveAssetPath(DEFAULT_AVATAR);
             }}
             sx={{
               width: "100%",
