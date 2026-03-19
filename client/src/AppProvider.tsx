@@ -4,7 +4,7 @@ import MyThemeProvider from "./MyThemeProvider";
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <MyThemeProvider>{
       children}
       </MyThemeProvider>
