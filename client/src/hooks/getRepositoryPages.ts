@@ -11,9 +11,9 @@ export function getRepositoryPages(): RepositoryPageMeta[] {
     eager: true,
     query: "?raw",
     import: "default",
-  });
+  }) as Record<string, string>;
 
-  return Object.keys(modules).map((filePath) => {
+  return Object.entries(modules).map(([filePath, content]) => {
     const fileName = filePath.split("/").pop() ?? "";
     const slug = fileName.replace(/\.md$/i, "");
 
@@ -22,6 +22,7 @@ export function getRepositoryPages(): RepositoryPageMeta[] {
       slug,
       label: toTitleCaseFromSlug(slug),
       routePath: `/repos/${slug}`,
+      content,
     };
   });
 }

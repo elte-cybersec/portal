@@ -19,4 +19,5 @@ export interface RepositoryPageMeta {
   slug: string;
   label: string;
   routePath: string;
+  content: string;
 }

@@ -20,7 +20,7 @@ export default function App() {
           <Route
             key={repo.slug}
             path={`repos/${repo.slug}`}
-            element={<RepoPage slug={repo.slug} />}
+            element={<RepoPage content={repo.content} />}
           />
         ))}
       </Route>

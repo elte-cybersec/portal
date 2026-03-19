@@ -1,27 +1,35 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
+import rehypeSlug from "rehype-slug";
+
+import "github-markdown-css/github-markdown.css";
+import "highlight.js/styles/github-dark.css";
 
 interface RepoPageProps {
-  slug: string;
+  content: string;
 }
 
-export default function RepoPage({ slug }: RepoPageProps) {
+export default function RepoPage({ content }: RepoPageProps) {
   return (
     <Container maxWidth="lg" sx={{ py: 3 }}>
-      <Box>
-        <Typography
-          variant="h4"
-          sx={{
-            color: "primary.main",
-            fontWeight: 700,
-            mb: 1,
-          }}
+      <Box
+        className="markdown-body"
+        sx={{
+          backgroundColor: "transparent",
+          "& table": {
+            display: "table",
+            width: "100%",
+          },
+        }}
+      >
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeSlug, rehypeHighlight]}
         >
-          Repository Page
-        </Typography>
-
-        <Typography color="text.primary">
-          Hey, I am <strong>{slug}</strong>.
-        </Typography>
+          {content}
+        </ReactMarkdown>
       </Box>
     </Container>
   );
