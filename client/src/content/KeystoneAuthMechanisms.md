@@ -279,3 +279,16 @@ This setup is intended for *reseach and analysis purposes only**.
 Obada Alnaddaf: r6ztek@inf.elte.hu - Mohammed B. Alshawki: alshawki@inf.elte.hu
 
 ---
+
+## PORTAL_METADATA
+
+```portal
+slug: KeystoneAuthMechanisms
+title: Keystone Authentication Mechanisms in OpenStack
+summary: Research-oriented setup and analysis of Keystone authentication mechanisms, including password, TOTP, OAuth, and application credentials.
+startDate: 2025-04-01
+endDate: 2025-08-01
+logos:
+  - openstack.png
+  - keystone.png
+```

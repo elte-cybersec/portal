@@ -2,15 +2,35 @@ import type { AboutPerson } from "../types";
 
 export const aboutData: AboutPerson[] = [
   {
-  title: "Dr.",
-  name: "Ali",
-  familyName: "Alshawki",
-  job: "Researcher and contributor",
-  extraInfo: "Connected to ELTE Cybersecurity and related academic or technical activities.",
-  picture: "avatars/alshawki.jpg",
-  link: "https://www.linkedin.com/in/alshawki/",
-}
-  ,
+    title: "Dr.",
+    name: "Mohammed",
+    familyName: "Alshawki",
+    job: "Researcher and contributor",
+    extraInfo:
+      "Connected to ELTE Cybersecurity and related academic or technical activities.",
+    picture: "avatars/alshawki.jpg",
+    link: "https://www.linkedin.com/in/alshawki/",
+  },
+  {
+    title: "",
+    name: "Adam",
+    familyName: "Nagy",
+    job: "Ph.D. student",
+    extraInfo:
+      "Contributing to ELTE Cybersecurity academic and technical activities.",
+    picture: "avatars/nagyadam888.jpg",
+    link: "https://www.linkedin.com/in/nagyadam888/",
+  },
+  {
+    title: "",
+    name: "Aya",
+    familyName: "KHEDDA",
+    job: "Ph.D. student",
+    extraInfo:
+      "Contributing to ELTE Cybersecurity academic and technical activities.",
+    picture: "avatars/aya-kd.jpg",
+    link: "https://www.linkedin.com/in/aya-kd/",
+  },
   {
     title: "",
     name: "Saeed",
@@ -20,14 +40,5 @@ export const aboutData: AboutPerson[] = [
       "Working on the ELTE Cybersecurity portal for project presentation, resources, and future content.",
     picture: "avatars/saeedkhanloo.jpg",
     link: "https://www.linkedin.com/in/saeedkhanloo",
-  },
-    {
-    title: "Assist. Prof.",
-    name: "Gianluca",
-    familyName: "Bonifazi",
-    job: "Visiting Professor from Università Politecnica delle Marche, Italy",
-    extraInfo: "Test Person",
-    picture: "avatars/gianluca-bonifazi.png",
-    link: "https://www.linkedin.com/",
   },
 ];

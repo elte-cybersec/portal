@@ -15,13 +15,13 @@ export default function HomePage() {
             <Typography
               variant="h2"
               sx={{
-                color: "text.primary",
+                color: "primary.main",
                 fontWeight: 800,
                 mb: 2,
                 fontSize: { xs: "2.2rem", md: "3.5rem" },
               }}
             >
-              Welcome to ELTE Cybersecurity
+              Welcome to ELTE Cybersecurity Lab
             </Typography>
 
             <Typography

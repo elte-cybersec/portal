@@ -1,11 +1,5 @@
 import type { RepositoryPageMeta } from "../types";
 
-function toTitleCaseFromSlug(slug: string): string {
-  return slug
-    .replace(/[-_]+/g, " ")
-    .replace(/\b\w/g, (char) => char.toUpperCase());
-}
-
 export function getRepositoryPages(): RepositoryPageMeta[] {
   const modules = import.meta.glob("../content/*.md", {
     eager: true,
@@ -20,8 +14,6 @@ export function getRepositoryPages(): RepositoryPageMeta[] {
     return {
       fileName,
       slug,
-      label: toTitleCaseFromSlug(slug),
-      routePath: `/repos/${slug}`,
       content,
     };
   });

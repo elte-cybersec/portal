@@ -17,7 +17,20 @@ export interface ContactPageData {
 export interface RepositoryPageMeta {
   fileName: string;
   slug: string;
-  label: string;
-  routePath: string;
   content: string;
+}
+
+export interface ProjectMeta {
+  slug: string;
+  title: string;
+  shortDescription: string;
+  routePath: string;
+  startDate?: string;
+  endDate?: string;
+  logos?: string[];
+}
+
+export interface ProjectPageData {
+  repository: RepositoryPageMeta;
+  project: ProjectMeta;
 }

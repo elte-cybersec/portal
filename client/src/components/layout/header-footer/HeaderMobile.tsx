@@ -12,18 +12,15 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useThemeMode } from "../../../MyThemeProvider";
 import AnimatedTitle from "./AnimatedTitle";
 import HeaderNavTabs from "./HeaderNavTabs";
-import type { RepositoryPageMeta } from "../../../types";
 
 interface MobileHeaderProps {
   title: string;
   sticky?: boolean;
-  repositoryPages: RepositoryPageMeta[];
 }
 
 export default function HeaderMobile({
   title,
   sticky = true,
-  repositoryPages
 }: MobileHeaderProps) {
   const { mode, toggle } = useThemeMode();
   const isLight = mode === "light";
@@ -58,8 +55,14 @@ export default function HeaderMobile({
 
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
             <Tooltip title={isLight ? "Switch to dark" : "Switch to light"}>
-              <IconButton onClick={toggle} color="primary" aria-label="toggle theme">
-                {isLight ? <LightModeIcon /> : <DarkModeIcon />}
+              <IconButton
+                onClick={toggle}
+                aria-label="toggle theme"
+                sx={{
+                  color: isLight ? "primary.main" : "text.primary",
+                }}
+              >
+                {isLight ? <DarkModeIcon /> : <LightModeIcon />}
               </IconButton>
             </Tooltip>
           </Box>
@@ -67,7 +70,7 @@ export default function HeaderMobile({
 
         <Divider />
 
-        <HeaderNavTabs repositoryPages={repositoryPages}/>
+        <HeaderNavTabs />
       </Container>
     </AppBar>
   );

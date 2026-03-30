@@ -1,56 +1,61 @@
 import { createTheme } from "@mui/material/styles";
+import { themeTokens, type ThemeMode } from "../src/data/themeTokens";
 
-export type ThemeMode = "light" | "dark";
+export type { ThemeMode };
 
 export function createAppTheme(mode: ThemeMode) {
-  const isDark = mode === "dark";
-
-  const primaryMain = isDark ? "#2110ddff" : "#160b96ff";
-  const primaryLight = isDark ? "#160b96ff" : "#2110ddff";
-  const primaryDark = isDark ? "#160b96ff" : "#2110ddff";
+  const tokens = themeTokens[mode];
 
   return createTheme({
     palette: {
       mode,
       primary: {
-        main: primaryMain,
-        light: primaryLight,
-        dark: primaryDark,
-        contrastText: "#ffffff",
+        main: tokens.primaryMain,
+        light: tokens.primaryLight,
+        dark: tokens.primaryDark,
+        contrastText: tokens.white,
       },
-      background: isDark
-        ? {
-            default: "#121212",
-            paper: "#1b1b1b",
-          }
-        : {
-            default: "#f7f8fb",
-            paper: "#ffffff",
-          },
-      text: isDark
-        ? {
-            primary: "#ffffff",
-            secondary: "#b8b8c2",
-          }
-        : {
-            primary: "#171717",
-            secondary: "#555b66",
-          },
-      divider: isDark ? "rgba(255,255,255,0.10)" : "rgba(0,0,0,0.10)",
+      secondary: {
+        main: tokens.secondaryMain,
+        contrastText: tokens.white,
+      },
+      background: {
+        default: tokens.backgroundDefault,
+        paper: tokens.backgroundPaper,
+      },
+      text: {
+        primary: tokens.textPrimary,
+        secondary: tokens.textSecondary,
+      },
+      divider: tokens.divider,
     },
+
     shape: {
       borderRadius: 12,
     },
+
     components: {
       MuiCssBaseline: {
         styleOverrides: {
           body: {
             margin: 0,
             padding: 0,
+            backgroundColor: tokens.backgroundDefault,
+            color: tokens.textPrimary,
           },
           a: {
             textDecoration: "none",
             color: "inherit",
+          },
+        },
+      },
+
+      MuiAppBar: {
+        styleOverrides: {
+          root: {
+            backgroundColor: tokens.secondaryMain,
+            color: tokens.white,
+            boxShadow: "none",
           },
         },
       },
@@ -63,7 +68,7 @@ export function createAppTheme(mode: ThemeMode) {
             fontWeight: 600,
           },
           containedPrimary: {
-            color: "#ffffff",
+            color: tokens.white,
           },
         },
       },
@@ -80,6 +85,9 @@ export function createAppTheme(mode: ThemeMode) {
         styleOverrides: {
           root: {
             backgroundImage: "none",
+            backgroundColor: tokens.backgroundPaper,
+            border: `1px solid ${tokens.divider}`,
+            boxShadow: "none",
           },
         },
       },
@@ -88,6 +96,44 @@ export function createAppTheme(mode: ThemeMode) {
         styleOverrides: {
           root: {
             borderRadius: 999,
+          },
+        },
+      },
+
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            backgroundImage: "none",
+          },
+        },
+      },
+
+      MuiTabs: {
+        styleOverrides: {
+          indicator: {
+            backgroundColor: tokens.white,
+            height: 3,
+          },
+        },
+      },
+
+      MuiTab: {
+        styleOverrides: {
+          root: {
+            color: "rgba(255,255,255,0.85)",
+            fontWeight: 700,
+            textTransform: "none",
+            "&.Mui-selected": {
+              color: tokens.white,
+            },
+          },
+        },
+      },
+
+      MuiToolbar: {
+        styleOverrides: {
+          root: {
+            minHeight: 64,
           },
         },
       },

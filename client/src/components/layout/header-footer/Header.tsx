@@ -2,27 +2,22 @@ import HeaderDesktop from "./HeaderDesktop";
 import HeaderMobile from "./HeaderMobile";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import type { RepositoryPageMeta } from "../../../types";
+import { siteConfig } from "../../../data/siteConfig";
 
-interface HeaderProps {
-  repositoryPages: RepositoryPageMeta[];
-}
 
-export default function Header({ repositoryPages }: HeaderProps) {
+export default function Header() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return isDesktop ? (
     <HeaderDesktop
-      title="ELTE Cybersecurity"
+      title={siteConfig.siteTitle}
       sticky
-      repositoryPages={repositoryPages}
     />
   ) : (
     <HeaderMobile
-      title="ELTE Cybersecurity"
+      title={siteConfig.siteTitle}
       sticky
-      repositoryPages={repositoryPages}
     />
   );
 }

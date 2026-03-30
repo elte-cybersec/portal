@@ -1,5 +1,6 @@
 import { Box, Card, Link, Typography } from "@mui/material";
 import { NavLink as RouterNavLink } from "react-router-dom";
+import { siteConfig } from "../../../data/siteConfig";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -81,7 +82,7 @@ export default function Footer() {
           }}
         >
           <Typography variant="body2" color="text.secondary" textAlign="center">
-            © {year} ELTE Cybersecurity. All rights reserved.
+            © {year} {siteConfig.siteTitle.replaceAll("-"," ")}. All rights reserved.
           </Typography>
 
           <Box
@@ -93,14 +94,6 @@ export default function Footer() {
               justifyContent: "center",
             }}
           >
-            <Link
-              component={RouterNavLink}
-              to="/about"
-              underline="none"
-              sx={navLinkSx}
-            >
-              About
-            </Link>
 
             <Link
               component={RouterNavLink}

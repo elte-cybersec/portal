@@ -169,3 +169,16 @@ ProVerif will output:
 For issues related to:
 - **ProVerif syntax/semantics**: Consult the ProVerif manual
 - **Docker setup**: Check Docker documentation
+
+## PORTAL_METADATA
+
+```portal
+slug: Access-Control-VTT-QX
+title: ProVerif Docker Setup and Usage
+summary: Docker-based environment for running ProVerif formal verification workflows and testing protocol models.
+startDate: 2025-03-15
+endDate: 2025-07-15
+logos:
+  - docker.png
+  - proverif.png
+```
