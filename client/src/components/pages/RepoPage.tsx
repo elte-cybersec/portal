@@ -1,4 +1,5 @@
-import { Box, Container } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
@@ -7,13 +8,57 @@ import rehypeSlug from "rehype-slug";
 import "github-markdown-css/github-markdown.css";
 import "highlight.js/styles/github-dark.css";
 
+import type { ParsedRepositorySection, ProjectMeta } from "../../types";
+
 interface RepoPageProps {
-  content: string;
+  project: ProjectMeta;
+  currentSection: ParsedRepositorySection;
+  sections: ParsedRepositorySection[];
 }
 
-export default function RepoPage({ content }: RepoPageProps) {
+function buildSectionMarkdown(section: ParsedRepositorySection): string {
+  const parts: string[] = [];
+
+  parts.push(`# ${section.title}`);
+
+  if (section.content.trim()) {
+    parts.push(section.content.trim());
+  }
+
+  for (const child of section.children) {
+    parts.push(`## ${child.title}`);
+
+    if (child.content.trim()) {
+      parts.push(child.content.trim());
+    }
+  }
+
+  return parts.join("\n\n");
+}
+
+export default function RepoPage({
+  project,
+  currentSection,
+  sections,
+}: RepoPageProps) {
+  const markdownContent = buildSectionMarkdown(currentSection);
+
+  const currentIndex = sections.findIndex(
+    (section) => section.id === currentSection.id,
+  );
+
+  const previousSection = currentIndex > 0 ? sections[currentIndex - 1] : null;
+  const nextSection =
+    currentIndex < sections.length - 1 ? sections[currentIndex + 1] : null;
+
   return (
-    <Container maxWidth="lg" sx={{ py: 3 }}>
+    <Container
+      maxWidth={false}
+      sx={{
+        py: 3,
+        px: { xs: 0, md: 1 },
+      }}
+    >
       <Box
         className="markdown-body"
         sx={(theme) => ({
@@ -68,18 +113,36 @@ export default function RepoPage({ content }: RepoPageProps) {
                 : "rgba(255,255,255,0.08)",
             borderRadius: "6px",
             padding: "0.15em 0.4em",
+            fontVariantLigatures: "none",
           },
 
           "& pre": {
             backgroundColor: "#0d1117 !important",
             borderRadius: 2,
             overflowX: "auto",
+            whiteSpace: "pre",
+            wordBreak: "normal",
+            overflowWrap: "normal",
+            textAlign: "left",
+            fontFamily:
+              'ui-monospace, SFMono-Regular, SFMono, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+            fontSize: "0.95rem",
+            lineHeight: 1.6,
+            padding: "1rem",
+            fontVariantLigatures: "none",
           },
 
           "& pre code": {
             backgroundColor: "transparent !important",
             color: "inherit !important",
             padding: 0,
+            whiteSpace: "pre",
+            wordBreak: "normal",
+            overflowWrap: "normal",
+            textAlign: "left",
+            fontFamily:
+              'ui-monospace, SFMono-Regular, SFMono, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+            fontVariantLigatures: "none",
           },
 
           "& img": {
@@ -91,8 +154,45 @@ export default function RepoPage({ content }: RepoPageProps) {
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeSlug, rehypeHighlight]}
         >
-          {content}
+          {markdownContent}
         </ReactMarkdown>
+      </Box>
+
+      <Box
+        sx={{
+          mt: 4,
+          pt: 3,
+          borderTop: 1,
+          borderColor: "divider",
+          display: "flex",
+          justifyContent: "space-between",
+          gap: 2,
+          flexWrap: "wrap",
+        }}
+      >
+        <Box>
+          {previousSection && (
+            <Button
+              component={RouterLink}
+              to={`/repos/${project.slug}/${previousSection.id}`}
+              variant="outlined"
+            >
+              Back: {previousSection.title}
+            </Button>
+          )}
+        </Box>
+
+        <Box>
+          {nextSection && (
+            <Button
+              component={RouterLink}
+              to={`/repos/${project.slug}/${nextSection.id}`}
+              variant="contained"
+            >
+              Next: {nextSection.title}
+            </Button>
+          )}
+        </Box>
       </Box>
     </Container>
   );

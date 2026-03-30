@@ -2,10 +2,26 @@
 
 This repository contains Docker configurations for running ProVerif formal verification tools to analyze access control protocols.
 
+## Table of Contents
+
+1. [Prerequisites](#prerequisites)
+2. [Setup Options](#setup-options)
+3. [Usage Examples](#usage-examples)
+4. [File Structure](#file-structure)
+5. [ProVerif Model Development](#proverif-model-development)
+6. [Troubleshooting](#troubleshooting)
+7. [Development Workflow](#development-workflow)
+8. [Additional Resources](#additional-resources)
+9. [Support](#support)
+
+---
+
 ## Prerequisites
 
 - Docker installed on your system
 - Git (for cloning repositories)
+
+---
 
 ## Setup Options
 
@@ -35,6 +51,8 @@ docker run -it --rm -v $(pwd):/home/proverif/models vtt-qx-proverif
 # Inside the container, you can run ProVerif
 proverif your_model.pv
 ```
+
+---
 
 ## Usage Examples
 
@@ -71,17 +89,21 @@ docker run -it --rm -v $(pwd):/home/proverif/models vtt-qx-proverif
 # - Your local files mounted in /home/proverif/models
 ```
 
+---
+
 ## File Structure
 
-```
+```text
 ├── Dockerfile              # Docker image definition
 ├── proverif.sh             # Convenient wrapper script
 ├── models/                 # Your ProVerif models go here
 │   ├── device_access.pv
 │   ├── job_submission.pv
 │   └── ...
-└── README.md              # This file
+└── README.md               # This file
 ```
+
+---
 
 ## ProVerif Model Development
 
@@ -99,12 +121,12 @@ type project.
 event DeviceAccessGranted(user, device).
 
 (* Processes *)
-let deviceAccess(u: user, d: device) = 
+let deviceAccess(u: user, d: device) =
     (* Protocol logic here *)
     event DeviceAccessGranted(u, d).
 
 (* Security Queries *)
-query x: user, y: device; 
+query x: user, y: device;
     event(DeviceAccessGranted(x, y)).
 
 (* Main process *)
@@ -117,6 +139,8 @@ ProVerif will output:
 - ✅ `RESULT goal is true` - Property verified successfully
 - ❌ `RESULT goal is false` - Property violated (with attack trace)
 - ⚠️ `RESULT goal cannot be proved` - Inconclusive result
+
+---
 
 ## Troubleshooting
 
@@ -141,7 +165,7 @@ ProVerif will output:
    ```bash
    # Check Docker is running
    docker --version
-   
+
    # Pull base image manually if needed
    docker pull ubuntu:20.04
    ```
@@ -153,6 +177,8 @@ ProVerif will output:
    docker build --no-cache -t vtt-qx-proverif .
    ```
 
+---
+
 ## Development Workflow
 
 1. **Write your ProVerif model** in a `.pv` file
@@ -160,15 +186,21 @@ ProVerif will output:
 3. **Analyze results** and refine your model
 4. **Iterate** until all security properties are verified
 
+---
+
 ## Additional Resources
 
 - [ProVerif Manual](https://bblanche.gitlabpages.inria.fr/proverif/)
+
+---
 
 ## Support
 
 For issues related to:
 - **ProVerif syntax/semantics**: Consult the ProVerif manual
 - **Docker setup**: Check Docker documentation
+
+---
 
 ## PORTAL_METADATA
 
@@ -178,6 +210,7 @@ title: ProVerif Docker Setup and Usage
 summary: Docker-based environment for running ProVerif formal verification workflows and testing protocol models.
 startDate: 2025-03-15
 endDate: 2025-07-15
+repositoryUrl: https://github.com/elte-cybersec/Access-Control-VTT-QX
 logos:
   - docker.png
   - proverif.png

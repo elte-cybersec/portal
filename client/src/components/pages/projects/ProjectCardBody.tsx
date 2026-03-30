@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import type { ProjectMeta } from "../../../types";
 
 interface ProjectCardBodyProps {
@@ -24,10 +24,27 @@ export default function ProjectCardBody({ project }: ProjectCardBodyProps) {
         color="text.secondary"
         sx={{
           lineHeight: 1.7,
+          mb: 1.5,
         }}
       >
         {project.shortDescription}
       </Typography>
+
+      {project.repositoryUrl && (
+        <Link
+          href={project.repositoryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          underline="hover"
+          sx={{
+            color: "primary.main",
+            fontWeight: 600,
+            fontSize: "0.95rem",
+          }}
+        >
+          View repository
+        </Link>
+      )}
     </Box>
   );
 }

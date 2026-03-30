@@ -28,9 +28,44 @@ export interface ProjectMeta {
   startDate?: string;
   endDate?: string;
   logos?: string[];
+  repositoryUrl?: string;
 }
 
 export interface ProjectPageData {
   repository: RepositoryPageMeta;
   project: ProjectMeta;
+}
+
+export interface ParsedPortalMetadata {
+  slug?: string;
+  title?: string;
+  summary?: string;
+  startDate?: string;
+  endDate?: string;
+  logos?: string[];
+  repositoryUrl?: string;
+}
+
+export interface ParsedRepositoryChildSection {
+  id: string;
+  title: string;
+  content: string;
+}
+
+export interface ParsedRepositorySection {
+  id: string;
+  title: string;
+  content: string;
+  children: ParsedRepositoryChildSection[];
+}
+
+export interface ParsedRepositoryDocument {
+  metadata: ParsedPortalMetadata;
+  sections: ParsedRepositorySection[];
+}
+
+export interface ParsedProjectData {
+  repository: RepositoryPageMeta;
+  project: ProjectMeta;
+  document: ParsedRepositoryDocument;
 }

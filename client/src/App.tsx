@@ -8,11 +8,12 @@ import ContactPage from "./components/pages/contact-us/ContactPage";
 import Projects from "./components/pages/projects/Projects";
 import RepoPageWrapper from "./components/pages/RepoPageWrapper";
 import { getRepositoryPages } from "./utils/getRepositoryPages";
-import { getProjects } from "./utils/getProjects";
+import { getParsedProjects, getProjects } from "./utils/getProjects";
 import { siteConfig } from "./data/siteConfig";
 
 export default function App() {
   const repositoryPages = getRepositoryPages();
+  const parsedProjects = getParsedProjects(repositoryPages);
   const projects = getProjects(repositoryPages);
 
   useEffect(() => {
@@ -28,18 +29,19 @@ export default function App() {
         <Route path="projects" element={<Projects projects={projects} />} />
 
         <Route
-          path="repos"
-          element={<RepositoryLayout projects={projects} />}
+          path="repos/:projectSlug"
+          element={<RepositoryLayout parsedProjects={parsedProjects} />}
         >
           <Route
-            path=":slug"
-            element={<RepoPageWrapper repositoryPages={repositoryPages} />}
+            index
+            element={<RepoPageWrapper parsedProjects={parsedProjects} />}
+          />
+          <Route
+            path=":topicId"
+            element={<RepoPageWrapper parsedProjects={parsedProjects} />}
           />
         </Route>
-      
       </Route>
-
-
     </Routes>
   );
 }

@@ -1,14 +1,17 @@
 import { Box, Button, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import type { ProjectMeta } from "../../types";
+import type { ParsedProjectData } from "../../types";
 
 interface RepositoriesSidebarProps {
-  projects: ProjectMeta[];
+  parsedProject: ParsedProjectData;
 }
 
 export default function RepositoriesSidebar({
-  projects,
+  parsedProject,
 }: RepositoriesSidebarProps) {
+  const { project, document } = parsedProject;
+  const { sections } = document;
+
   return (
     <Box
       sx={{
@@ -21,16 +24,31 @@ export default function RepositoriesSidebar({
         top: { md: 96 },
       }}
     >
-      <Typography variant="h6" sx={{ mb: 2, fontWeight: 700,color:"primary.main", }}>
-        Repositories
+      <Typography
+        variant="h6"
+        sx={{
+          mb: 0.5,
+          fontWeight: 700,
+          color: "primary.main",
+        }}
+      >
+        {project.title}
+      </Typography>
+
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        sx={{ mb: 2 }}
+      >
+        Topics
       </Typography>
 
       <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-        {projects.map((project) => (
+        {sections.map((section) => (
           <Button
-            key={project.slug}
+            key={section.id}
             component={NavLink}
-            to={project.routePath}
+            to={`/repos/${project.slug}/${section.id}`}
             sx={{
               width: "100%",
               justifyContent: "flex-start",
@@ -49,7 +67,7 @@ export default function RepositoriesSidebar({
               },
             }}
           >
-            {project.title}
+            {section.title}
           </Button>
         ))}
       </Box>

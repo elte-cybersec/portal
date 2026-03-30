@@ -1,15 +1,25 @@
 import { Box, Container } from "@mui/material";
-import { Outlet } from "react-router-dom";
-import type { ProjectMeta } from "../../types";
+import { Navigate, Outlet, useParams } from "react-router-dom";
+import type { ParsedProjectData } from "../../types";
 import RepositoriesSidebar from "./RepositoriesSidebar";
 
 interface RepositoryLayoutProps {
-  projects: ProjectMeta[];
+  parsedProjects: ParsedProjectData[];
 }
 
 export default function RepositoryLayout({
-  projects,
+  parsedProjects,
 }: RepositoryLayoutProps) {
+  const { projectSlug } = useParams<{ projectSlug: string }>();
+
+  const parsedProject = parsedProjects.find(
+    (item) => item.project.slug === projectSlug,
+  );
+
+  if (!parsedProject) {
+    return <Navigate to="/projects" replace />;
+  }
+
   return (
     <Container maxWidth="xl" sx={{ py: 3 }}>
       <Box
@@ -20,7 +30,7 @@ export default function RepositoryLayout({
           alignItems: "start",
         }}
       >
-        <RepositoriesSidebar projects={projects} />
+        <RepositoriesSidebar parsedProject={parsedProject} />
 
         <Box sx={{ minWidth: 0 }}>
           <Outlet />

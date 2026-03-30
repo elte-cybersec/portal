@@ -1,5 +1,4 @@
-import { Card, CardActionArea, Box } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Card, Box } from "@mui/material";
 import type { ProjectMeta } from "../../../types";
 import ProjectCardHeader from "./ProjectCardHeader";
 import ProjectCardBody from "./ProjectCardBody";
@@ -34,39 +33,19 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         },
       })}
     >
-      <CardActionArea
-        component={RouterLink}
-        to={project.routePath}
+      <Box
         sx={{
+          display: "flex",
+          flexDirection: "column",
           height: "100%",
-          alignItems: "stretch",
-          backgroundColor: "transparent",
-          transition: "transform 0.22s ease",
-          "&:hover": {
-            backgroundColor: "transparent",
-          },
-          "&.Mui-focusVisible": {
-            backgroundColor: "transparent",
-          },
-          "& .MuiCardActionArea-focusHighlight": {
-            opacity: 0,
-          },
+          p: 2.5,
+          gap: 1.5,
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            height: "100%",
-            p: 2.5,
-            gap: 1.5,
-          }}
-        >
-          <ProjectCardHeader project={project} />
-          <ProjectCardBody project={project} />
-          <ProjectCardFooter project={project} />
-        </Box>
-      </CardActionArea>
+        <ProjectCardHeader project={project} />
+        <ProjectCardBody project={project} />
+        <ProjectCardFooter project={project} />
+      </Box>
     </Card>
   );
 }
