@@ -1,6 +1,5 @@
 # Securing Cloud and IoT Identity: An Analysis of Keystone Authentication Mechanisms in OpenStack
 
-
 This repository demonstrates how to install and configure the **Keystone Identity Service** on a local Ubuntu system, and test multiple supported authentication mechanisms.
 
 > ⚠️ This setup is for research and analysis purposes only. Do not use it in a production environment.
@@ -9,18 +8,18 @@ This repository demonstrates how to install and configure the **Keystone Identit
 
 ## 📚 Table of Contents
 
-- [Keystone Demo Setup](#keystone-demo-setup)
+- [Keystone Demo Setup](#-keystone-demo-setup)
   - [Prerequisites](#prerequisites)
   - [Step-by-Step Installation](#step-by-step-installation)
-- [Authentication Mechanisms](#authentication-mechanisms)
+- [Authentication Mechanisms](#-authentication-mechanisms)
   - [Password Authentication](#password-authentication)
   - [TOTP Authentication](#totp-authentication)
   - [OAuth Authentication](#oauth-authentication)
   - [Application Credentials Authentication](#application-credentials-authentication)
-- [Token Decrypter](#token-decrypter)
-- [Scripts](#scripts)
-- [Disclaimer](#disclaimer)
-- [Contacts](#contacts)
+- [Token Decrypter](#-token-decrypter)
+- [Disclaimer](#-disclaimer)
+- [Contacts](#-contacts)
+
 ---
 
 ## 🔧 Keystone Demo Setup
@@ -31,8 +30,6 @@ This section demonstrates how to install and configure the **Keystone Identity S
 
 - A clean Ubuntu installation (Ubuntu 24.04.2 LTS)
 - Root or sudo access
-
----
 
 ### Step-by-Step Installation
 
@@ -65,8 +62,6 @@ EXIT;
 
 Replace `passhere` with your secure Keystone DB password.
 
----
-
 #### Step 3: Configure Keystone
 
 Edit the Keystone configuration file:
@@ -85,8 +80,6 @@ connection = mysql+pymysql://keystone:passhere@localhost/keystone
 provider = fernet
 ```
 
----
-
 #### Step 4: Database Sync and Token Initialization
 
 ```bash
@@ -97,24 +90,16 @@ sudo keystone-manage fernet_setup --keystone-user keystone --keystone-group keys
 sudo keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
 
 # Bootstrap the Identity service
-sudo keystone-manage bootstrap --bootstrap-password ADMIN_PASS \
-  --bootstrap-admin-url http://localhost:5000/v3/ \
-  --bootstrap-internal-url http://localhost:5000/v3/ \
-  --bootstrap-public-url http://localhost:5000/v3/ \
-  --bootstrap-region-id RegionOne
+sudo keystone-manage bootstrap --bootstrap-password ADMIN_PASS   --bootstrap-admin-url http://localhost:5000/v3/   --bootstrap-internal-url http://localhost:5000/v3/   --bootstrap-public-url http://localhost:5000/v3/   --bootstrap-region-id RegionOne
 ```
 
 Replace `ADMIN_PASS` with a strong password for the admin user.
-
----
 
 #### Step 5: Restart Apache2
 
 ```bash
 sudo service apache2 restart
 ```
-
----
 
 #### Step 6: Set Environment Variables
 
@@ -129,8 +114,6 @@ export OS_IDENTITY_API_VERSION=3
 ```
 
 You can also save these in a file like `keystonerc` and use `source keystonerc`.
-
----
 
 #### Step 7: Verify Keystone is Working
 
@@ -163,8 +146,6 @@ openstack role add --project admin --user <USERNAME> admin
 
 > For testing, use the provided `CurlPass` script.
 
----
-
 ### TOTP Authentication
 
 Keystone supports TOTP for Multi-Factor Authentication (MFA).
@@ -191,15 +172,11 @@ print(pyotp.TOTP("YOUR_TOTP_SECRET").now())
 
 > For testing, use the provided `CurlTOTP` script.
 
----
-
 ### OAuth Authentication
 
 Generate your OAuth credential using a provider such as [Auth0](https://auth0.com/).
 
 > For testing, use the provided `CurlOauth` script.
-
----
 
 ### Application Credentials Authentication
 
@@ -269,13 +246,28 @@ Be sure to insert your own Fernet key into the script. You can usually find keys
 
 ## ⚠️ Disclaimer
 
-This setup is intended for *reseach and analysis purposes only**.  
+This setup is intended for **research and analysis purposes only**.  
 **Do not use this configuration in production environments** without hardening and auditing.
 
 ---
 
 ## Contacts
 
-Obada Alnaddaf: r6ztek@inf.elte.hu - Mohammed B. Alshawki: alshawki@inf.elte.hu
+Obada Alnaddaf: r6ztek@inf.elte.hu  
+Mohammed B. Alshawki: alshawki@inf.elte.hu
 
 ---
+
+## PORTAL_METADATA
+
+```portal
+slug: KeystoneAuthMechanisms
+title: Keystone Authentication Mechanisms in OpenStack
+summary: Research-oriented setup and analysis of Keystone authentication mechanisms, including password, TOTP, OAuth, and application credentials.
+startDate: 2025-04-01
+endDate: 2025-08-01
+repositoryUrl: https://github.com/elte-cybersec/KeystoneAuthMechanisms
+logos:
+  - openstack.png
+  - keystone.png
+```

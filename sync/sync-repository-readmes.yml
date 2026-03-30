@@ -1,0 +1,62 @@
+# name: Sync external READMEs
+
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches:
+#       - main
+#     paths-ignore:
+#       - 'client/src/content/**'
+#   schedule:
+#     - cron: "0 3 * * 1"
+
+# permissions:
+#   contents: write
+
+# jobs:
+#   sync:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout portal repo
+#         uses: actions/checkout@v4
+
+#       - name: Fetch READMEs
+#         run: |
+#           mkdir -p client/src/content
+
+#           curl -fL https://raw.githubusercontent.com/elte-cybersec/FL-SPDZ/new/README.md \
+#             -o client/src/content/FL-SPDZ.md
+
+#           curl -fL https://raw.githubusercontent.com/elte-cybersec/5G-standard-full-stack/main/README.md \
+#             -o client/src/content/5G-standard-full-stack.md
+
+#           curl -fL https://raw.githubusercontent.com/elte-cybersec/KeystoneAuthMechanisms/main/README.md \
+#             -o client/src/content/KeystoneAuthMechanisms.md
+
+#           curl -fL https://raw.githubusercontent.com/elte-cybersec/Access-Control-VTT-QX/main/README.md \
+#             -o client/src/content/Access-Control-VTT-QX.md
+
+#           curl -fL https://raw.githubusercontent.com/elte-cybersec/gdpr-compliant-IIoT/main/README.md \
+#             -o client/src/content/gdpr-compliant-IIoT.md
+
+#           curl -fL https://raw.githubusercontent.com/elte-cybersec/Secure-Federated-Averaging/main/README.md \
+#             -o client/src/content/Secure-Federated-Averaging.md
+
+#           curl -fL https://raw.githubusercontent.com/elte-cybersec/HE-Evaluation/main/README.md \
+#             -o client/src/content/HE-Evaluation.md
+
+#       - name: Commit changes if needed
+#         run: |
+#           git config user.name "github-actions[bot]"
+#           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+#           git add client/src/content
+
+#           if git diff --cached --quiet; then
+#             echo "No changes"
+#             exit 0
+#           fi
+
+#           git commit -m "Sync external repository READMEs"
+#           git push
