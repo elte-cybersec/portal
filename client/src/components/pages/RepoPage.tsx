@@ -56,12 +56,15 @@ export default function RepoPage({
       maxWidth={false}
       sx={{
         py: 3,
-        px: { xs: 0, md: 1 },
+        px: { xs: 1, md: 1 },
+        minWidth: 0,
       }}
     >
       <Box
         className="markdown-body"
         sx={(theme) => ({
+          minWidth: 0,
+          overflowX: "hidden",
           backgroundColor: "transparent !important",
           color: `${theme.palette.text.primary} !important`,
           fontFamily: theme.typography.fontFamily,
@@ -84,13 +87,13 @@ export default function RepoPage({
           },
 
           "& table": {
-            display: "table",
-            width: "100%",
             backgroundColor: "transparent !important",
+            borderCollapse: "collapse",
           },
 
           "& th, & td": {
             borderColor: `${theme.palette.divider} !important`,
+            whiteSpace: "nowrap",
           },
 
           "& tr": {
@@ -153,6 +156,13 @@ export default function RepoPage({
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeSlug, rehypeHighlight]}
+          components={{
+            table: ({ children }) => (
+              <Box sx={{ width: "100%", overflowX: "auto", my: 2 }}>
+                <table>{children}</table>
+              </Box>
+            ),
+          }}
         >
           {markdownContent}
         </ReactMarkdown>

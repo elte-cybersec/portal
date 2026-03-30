@@ -4,21 +4,32 @@ import { navigationItems } from "../../../data/navigationItems";
 
 export default function HeaderNavTabs() {
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", px: 2, py: 1.25 }}>
+    <Box
+      sx={{
+        px: 2,
+        py: 1.25,
+      }}
+    >
       <Box
         sx={(theme) => ({
-          display: "inline-flex",
+          display: "flex",
+          flexWrap: { xs: "wrap", md: "nowrap" },
+          justifyContent: "center",
           alignItems: "center",
           gap: 0.75,
           p: 0.75,
+          width: "100%",
+          maxWidth: { xs: "100%", md: "fit-content" },
+          mx: "auto",
           border: 1,
           borderColor: "divider",
-          borderRadius: 999,
+          borderRadius: { xs: 4, md: 999 },
           bgcolor: "background.paper",
           boxShadow:
             theme.palette.mode === "dark"
               ? "0 4px 20px rgba(0,0,0,0.25)"
               : "0 4px 20px rgba(0,0,0,0.08)",
+          overflow: "hidden",
         })}
       >
         {navigationItems.map((item) => (
@@ -29,11 +40,12 @@ export default function HeaderNavTabs() {
             sx={(theme) => ({
               textTransform: "none",
               fontWeight: 700,
-              fontSize: { xs: "1rem", md: "1.15rem" },
-              px: { xs: 1.5, md: 2.5 },
-              py: 1,
+              fontSize: { xs: "0.95rem", md: "1.15rem" },
+              px: { xs: 1.25, md: 2.5 },
+              py: { xs: 0.8, md: 1 },
               borderRadius: 999,
               minWidth: 0,
+              flex: { xs: "1 1 auto", md: "0 0 auto" },
               letterSpacing: 0.2,
               color:
                 theme.palette.mode === "dark"
