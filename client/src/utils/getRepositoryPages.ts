@@ -9,11 +9,11 @@ export function getRepositoryPages(): RepositoryPageMeta[] {
 
   return Object.entries(modules).map(([filePath, content]) => {
     const fileName = filePath.split("/").pop() ?? "";
-    const slug = fileName.replace(/\.md$/i, "");
+    const fileSlug = fileName.replace(/\.md$/i, "");
 
     return {
       fileName,
-      slug,
+      fileSlug,
       content,
     };
   });

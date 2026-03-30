@@ -1,4 +1,5 @@
 import type {
+  ParsedPortalMetadata,
   ParsedProjectData,
   ProjectMeta,
   RepositoryPageMeta,
@@ -11,24 +12,26 @@ function toTitleCaseFromSlug(slug: string): string {
     .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
+function resolveProjectSlug(
+  repo: RepositoryPageMeta,
+  metadata: ParsedPortalMetadata,
+): string {
+  return metadata.slug?.trim() || repo.fileSlug;
+}
+
 function buildProjectMeta(
   repo: RepositoryPageMeta,
-  metadata: {
-    title?: string;
-    summary?: string;
-    startDate?: string;
-    endDate?: string;
-    logos?: string[];
-    repositoryUrl?: string;
-  },
+  metadata: ParsedPortalMetadata,
 ): ProjectMeta {
+  const resolvedSlug = resolveProjectSlug(repo, metadata);
+
   return {
-    slug: repo.slug,
-    title: metadata.title || toTitleCaseFromSlug(repo.slug),
+    slug: resolvedSlug,
+    title: metadata.title || toTitleCaseFromSlug(resolvedSlug),
     shortDescription:
       metadata.summary ||
       "This project contains repository-based documentation and related materials.",
-    routePath: `/repos/${repo.slug}`,
+    routePath: `/repos/${resolvedSlug}`,
     startDate: metadata.startDate,
     endDate: metadata.endDate,
     logos: metadata.logos || [],
@@ -49,10 +52,4 @@ export function getParsedProjects(
       document,
     };
   });
-}
-
-export function getProjects(
-  repositoryPages: RepositoryPageMeta[],
-): ProjectMeta[] {
-  return getParsedProjects(repositoryPages).map((item) => item.project);
 }

@@ -371,10 +371,10 @@ sudo ./nr-ue -c ../config/open5gs-ue.yaml
 slug: 5G-standard-full-stack
 title: Full 5G Implementation
 summary: Installation, configuration, and validation guide for a 5G testbed environment using Open5GS and UERANSIM.
-startDate: 2025-02-01
-endDate: 2025-06-30
+startDate: 2025-07-05
+endDate: 2025-11-19
 repositoryUrl: https://github.com/elte-cybersec/5G-standard-full-stack
 logos:
-  - open5gs.png
+  - 5g.png
   - ueransim.png
 ```

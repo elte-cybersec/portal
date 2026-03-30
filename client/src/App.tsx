@@ -8,13 +8,13 @@ import ContactPage from "./components/pages/contact-us/ContactPage";
 import Projects from "./components/pages/projects/Projects";
 import RepoPageWrapper from "./components/pages/RepoPageWrapper";
 import { getRepositoryPages } from "./utils/getRepositoryPages";
-import { getParsedProjects, getProjects } from "./utils/getProjects";
+import { getParsedProjects } from "./utils/getProjects";
 import { siteConfig } from "./data/siteConfig";
 
 export default function App() {
   const repositoryPages = getRepositoryPages();
   const parsedProjects = getParsedProjects(repositoryPages);
-  const projects = getProjects(repositoryPages);
+  const projects = parsedProjects.map((item) => item.project);
 
   useEffect(() => {
     document.title = siteConfig.browserTitle;

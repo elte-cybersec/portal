@@ -16,7 +16,7 @@ export interface ContactPageData {
 
 export interface RepositoryPageMeta {
   fileName: string;
-  slug: string;
+  fileSlug: string;
   content: string;
 }
 
@@ -29,11 +29,6 @@ export interface ProjectMeta {
   endDate?: string;
   logos?: string[];
   repositoryUrl?: string;
-}
-
-export interface ProjectPageData {
-  repository: RepositoryPageMeta;
-  project: ProjectMeta;
 }
 
 export interface ParsedPortalMetadata {

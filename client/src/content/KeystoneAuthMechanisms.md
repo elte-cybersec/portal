@@ -264,10 +264,9 @@ Mohammed B. Alshawki: alshawki@inf.elte.hu
 slug: KeystoneAuthMechanisms
 title: Keystone Authentication Mechanisms in OpenStack
 summary: Research-oriented setup and analysis of Keystone authentication mechanisms, including password, TOTP, OAuth, and application credentials.
-startDate: 2025-04-01
-endDate: 2025-08-01
+startDate: 2025-07-13
+endDate: 2025-10-08
 repositoryUrl: https://github.com/elte-cybersec/KeystoneAuthMechanisms
 logos:
-  - openstack.png
   - keystone.png
 ```

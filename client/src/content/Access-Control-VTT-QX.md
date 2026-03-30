@@ -208,10 +208,10 @@ For issues related to:
 slug: Access-Control-VTT-QX
 title: ProVerif Docker Setup and Usage
 summary: Docker-based environment for running ProVerif formal verification workflows and testing protocol models.
-startDate: 2025-03-15
-endDate: 2025-07-15
+startDate: 2025-05-18
+endDate: 2025-06-04
 repositoryUrl: https://github.com/elte-cybersec/Access-Control-VTT-QX
 logos:
-  - docker.png
+  - prove.png
   - proverif.png
 ```
