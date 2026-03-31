@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { type GameProps, THEME } from "./gauntlet.types";
 import { ScoreRow, GameHeader, Feedback } from "./gauntlet.ui";
 
@@ -48,7 +48,6 @@ export default function GradientGame({ onComplete }: GameProps) {
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(MAX_LIVES);
   const [timeLeft, setTimeLeft] = useState(GAME_DURATION);
-  const [blocked, setBlocked] = useState(0);
   const [feedback, setFeedback] = useState<{ text: string; type: "ok" | "err" | "none" }>({
     text: "",
     type: "none",
@@ -223,7 +222,6 @@ export default function GradientGame({ onComplete }: GameProps) {
         a.hit = true;
         blockedRef.current++;
         scoreRef.current += 10;
-        setBlocked(blockedRef.current);
         setScore(scoreRef.current);
         return;
       }
