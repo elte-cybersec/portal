@@ -10,6 +10,7 @@ import RepoPageWrapper from "./components/pages/RepoPageWrapper";
 import { getRepositoryPages } from "./utils/getRepositoryPages";
 import { getParsedProjects } from "./utils/getProjects";
 import { siteConfig } from "./data/siteConfig";
+import CyberGauntlet from "./components/pages/security-gauntlet/CyberGauntlet";
 
 export default function App() {
   const repositoryPages = getRepositoryPages();
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="about" element={<AboutPage />} />
         <Route path="contact" element={<ContactPage />} />
         <Route path="projects" element={<Projects projects={projects} />} />
+        <Route path="games" element={<CyberGauntlet />} />
 
         <Route
           path="repos/:projectSlug"
