@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import  { useState, useCallback } from "react";
 import { type GauntletScores, THEME } from "./gauntlet.types";
 import Intro from "./Intro";
 import CaesarGame from "./CaesarGame";

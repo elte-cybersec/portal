@@ -1,4 +1,3 @@
-import React from "react";
 import { type GauntletScores, THEME } from "./gauntlet.types";
 import { Link as RouterLink } from "react-router-dom";
 import {Button } from "@mui/material";

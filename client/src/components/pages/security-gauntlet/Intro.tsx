@@ -1,4 +1,3 @@
-import React from "react";
 import { THEME } from "./gauntlet.types";
 
 interface IntroProps {

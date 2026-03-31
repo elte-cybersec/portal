@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { type GameProps, THEME } from "./gauntlet.types";
 import { TimerBar, ScoreRow, GameBox, GameHeader, Feedback, PrimaryBtn } from "./gauntlet.ui";
 
