@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "./components/layout/MainLayout";
 import RepositoryLayout from "./components/layout/RepositoryLayout";
-import HomePage from "./components/pages/HomePage";
+import HomePage from "./components/pages/Home/HomePage";
 import AboutPage from "./components/pages/about/AboutPage";
 import ContactPage from "./components/pages/contact-us/ContactPage";
 import Projects from "./components/pages/projects/Projects";

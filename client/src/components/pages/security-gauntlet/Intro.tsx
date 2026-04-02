@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { THEME } from "./gauntlet.types";
 
 interface IntroProps {
@@ -8,7 +9,7 @@ const GAMES = [
   { color: THEME.green, label: "01. Caesar cipher breaker" },
   { color: THEME.blue, label: "02. Keystone auth challenge" },
   { color: THEME.purple, label: "03. Route the packet (5G)" },
-  { color: "#d85a30", label: "04. Gradient defender (FL)" },
+  { color: THEME.amber, label: "04. Gradient defender (FL)" },
 ];
 
 export default function Intro({ onStart }: IntroProps) {
@@ -85,34 +86,41 @@ export default function Intro({ onStart }: IntroProps) {
               padding: "10px 14px",
             }}
           >
-            <div style={{ width: 8, height: 8, borderRadius: "50%", background: color, flexShrink: 0 }} />
-            <span style={{ fontSize: 13, color: THEME.textSecondary, fontFamily: "monospace" }}>{label}</span>
+            <div
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: color,
+                flexShrink: 0,
+              }}
+            />
+            <span
+              style={{
+                fontSize: 13,
+                color: THEME.textSecondary,
+                fontFamily: "monospace",
+              }}
+            >
+              {label}
+            </span>
           </div>
         ))}
       </div>
 
-      <button
+      <Button
         onClick={onStart}
-        style={{
-          background: THEME.green,
-          color: THEME.textPrimary,
-          border: "none",
-          padding: "10px 32px",
-          borderRadius: 8,
+        variant="contained"
+        color="primary"
+        sx={{
+          px: 4,
+          py: 1.25,
           fontSize: 14,
-          cursor: "pointer",
           fontFamily: "inherit",
-          transition: "background 0.15s",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.background = THEME.greenDark;
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.background = THEME.green;
         }}
       >
         Start gauntlet
-      </button>
+      </Button>
     </div>
   );
 }
