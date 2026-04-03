@@ -1,10 +1,10 @@
 import  { useState, useCallback } from "react";
 import { type GauntletScores, THEME } from "./gauntlet.types";
 import Intro from "./Intro";
-import CaesarGame from "./CaesarGame";
-import KeystoneGame from "./KeystoneGame";
-import NetworkGame from "./NetworkGame";
-import GradientGame from "./GradientGame";
+import CaesarGame from "./caesar-game/CaesarGame";
+import KeystoneGame from "./keystone-game/KeystoneGame";
+import NetworkGame from "./network-game/NetworkGame";
+import GradientGame from "./gradient-game/GradientGame";
 import Results from "./Results";
 
 type Stage = "intro" | "caesar" | "keystone" | "network" | "gradient" | "results";

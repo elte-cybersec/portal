@@ -35,14 +35,23 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit} noValidate>
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      noValidate
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 1,
+      }}
+    >
       <TextField
         label="Name"
         name="name"
         value={values.name}
         onChange={handleChange}
         fullWidth
-        margin="normal"
+        size="small"
       />
 
       <TextField
@@ -52,7 +61,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         value={values.email}
         onChange={handleChange}
         fullWidth
-        margin="normal"
+        size="small"
         required
       />
 
@@ -62,7 +71,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         value={values.subject}
         onChange={handleChange}
         fullWidth
-        margin="normal"
+        size="small"
       />
 
       <TextField
@@ -71,20 +80,26 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         value={values.message}
         onChange={handleChange}
         fullWidth
-        margin="normal"
+        size="small"
         multiline
-        minRows={5}
+        minRows={2.5}
         required
         slotProps={{
           htmlInput: { maxLength: 500 },
-          formHelperText: { sx: { textAlign: "right", m: 0 } },
+          formHelperText: {
+            sx: {
+              textAlign: "right",
+              m: 0,
+              fontSize: "0.72rem",
+            },
+          },
         }}
         helperText={`${values.message.length}/500`}
       />
 
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-        <Button type="submit" variant="contained" color="primary">
-          Send message
+      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 0.25 }}>
+        <Button type="submit" variant="contained" color="primary" size="small">
+          Send
         </Button>
       </Box>
     </Box>

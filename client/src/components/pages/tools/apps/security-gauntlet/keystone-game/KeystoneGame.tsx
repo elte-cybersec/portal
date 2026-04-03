@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { type GameProps, THEME } from "./gauntlet.types";
-import { TimerBar, ScoreRow, GameBox, GameHeader, Feedback } from "./gauntlet.ui";
+import { type GameProps, THEME } from "../gauntlet.types";
+import { TimerBar, ScoreRow, GameBox, GameHeader, Feedback } from "../gauntlet.ui";
 
 interface Scenario {
   q: string;

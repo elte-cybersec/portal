@@ -20,7 +20,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ContactForm, { type ContactFormValues } from "./ContactForm";
-import { contactPageData  } from "../../../data/contactPageData";
+import { contactPageData } from "../../../data/contactPageData";
 
 const linkSx = (theme: Theme) => ({
   color: "primary.main",
@@ -36,28 +36,26 @@ const linkSx = (theme: Theme) => ({
 });
 
 export default function ContactPage() {
-  const [expanded, setExpanded] = React.useState<boolean>(contactPageData.showForm ?? false);
+  const [expanded, setExpanded] = React.useState<boolean>(
+    contactPageData.showForm ?? false
+  );
 
   const toggle = () => setExpanded((x) => !x);
 
   const handleSubmit = (values: ContactFormValues) => {
     console.log("Contact form submitted:", values);
-
-    // Future:
-    // send POST request to backend here
-
     setExpanded(false);
   };
 
   return (
-    <Container maxWidth="md" sx={{ py: { xs: 3, md: 5 } }}>
+    <Container maxWidth="xs" sx={{ py: { xs: 1.5, md: 2 } }}>
       <Box
         sx={{
           mx: "auto",
-          maxWidth: 720,
+          maxWidth: 420,
           display: "flex",
           flexDirection: "column",
-          gap: 2,
+          gap: 1,
         }}
       >
         <Card
@@ -67,75 +65,121 @@ export default function ContactPage() {
             color: "text.primary",
             border: 1,
             borderColor: "divider",
+            borderRadius: 2,
           }}
         >
           <CardHeader
             title="Contact"
-            subheader="Reach out to ELTE Cybersecurity for questions, collaboration, or general inquiries."
+            subheader="Reach out for questions, collaboration, or general inquiries."
             slotProps={{
               title: {
                 sx: {
                   color: "primary.main",
                   fontWeight: 700,
+                  fontSize: { xs: "1.1rem", md: "1.2rem" },
                 },
               },
               subheader: {
                 sx: {
                   color: "text.secondary",
+                  fontSize: { xs: "0.82rem", md: "0.86rem" },
+                  lineHeight: 1.4,
                 },
               },
             }}
-            sx={{ pb: 0 }}
+            sx={{
+              pb: 0,
+              px: 1.5,
+              pt: 1.5,
+            }}
           />
 
-          <CardContent>
-            <List dense>
+          <CardContent sx={{ px: 1.5, py: 0.75 }}>
+            <List dense sx={{ py: 0 }}>
               {contactPageData.email && (
-                <ListItem disableGutters>
-                  <ListItemIcon sx={{ minWidth: 36 }}>
-                    <EmailIcon color="primary" />
+                <ListItem disableGutters sx={{ py: 0.15 }}>
+                  <ListItemIcon sx={{ minWidth: 28 }}>
+                    <EmailIcon color="primary" sx={{ fontSize: 18 }} />
                   </ListItemIcon>
                   <ListItemText
                     primary={
-                      <Link href={`mailto:${contactPageData.email}`} underline="none" sx={linkSx}>
+                      <Link
+                        href={`mailto:${contactPageData.email}`}
+                        underline="none"
+                        sx={linkSx}
+                      >
                         {contactPageData.email}
                       </Link>
                     }
                     secondary="Email"
+                    slotProps={{
+                      primary: {
+                        sx: { fontSize: "0.86rem", lineHeight: 1.2 },
+                      },
+                      secondary: {
+                        sx: { fontSize: "0.74rem", lineHeight: 1.2 },
+                      },
+                    }}
                   />
                 </ListItem>
               )}
 
               {contactPageData.phone && (
-                <ListItem disableGutters>
-                  <ListItemIcon sx={{ minWidth: 36 }}>
-                    <PhoneIcon color="primary" />
+                <ListItem disableGutters sx={{ py: 0.15 }}>
+                  <ListItemIcon sx={{ minWidth: 28 }}>
+                    <PhoneIcon color="primary" sx={{ fontSize: 18 }} />
                   </ListItemIcon>
                   <ListItemText
                     primary={
-                      <Link href={`tel:${contactPageData.phone}`} underline="none" sx={linkSx}>
+                      <Link
+                        href={`tel:${contactPageData.phone}`}
+                        underline="none"
+                        sx={linkSx}
+                      >
                         {contactPageData.phone}
                       </Link>
                     }
                     secondary="Phone"
+                    slotProps={{
+                      primary: {
+                        sx: { fontSize: "0.86rem", lineHeight: 1.2 },
+                      },
+                      secondary: {
+                        sx: { fontSize: "0.74rem", lineHeight: 1.2 },
+                      },
+                    }}
                   />
                 </ListItem>
               )}
             </List>
           </CardContent>
 
-          <CardActions sx={{ justifyContent: "flex-end", pt: 0, px: 2, pb: 2 }}>
-            <Typography variant="body2" sx={{ mr: 1 }} color="text.secondary">
-              {expanded ? "Hide form" : "Open contact form"}
+          <CardActions
+            sx={{
+              justifyContent: "flex-end",
+              pt: 0,
+              px: 1.25,
+              pb: 1.25,
+            }}
+          >
+            <Typography
+              variant="body2"
+              sx={{ mr: 0.35, fontSize: "0.78rem" }}
+              color="text.secondary"
+            >
+              {expanded ? "Hide form" : "Open form"}
             </Typography>
             <IconButton
               onClick={toggle}
               aria-expanded={expanded}
               aria-label="toggle contact form"
               color="primary"
+              size="small"
+              sx={{ p: 0.5 }}
             >
               <ExpandMoreIcon
                 sx={{
+                  fontSize: 18,
                   transition: "transform 150ms ease",
                   transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
                 }}
@@ -152,6 +196,7 @@ export default function ContactPage() {
               color: "text.primary",
               border: 1,
               borderColor: "divider",
+              borderRadius: 2,
             }}
           >
             <CardHeader
@@ -161,13 +206,18 @@ export default function ContactPage() {
                   sx: {
                     color: "primary.main",
                     fontWeight: 700,
+                    fontSize: { xs: "1rem", md: "1.08rem" },
                   },
                 },
               }}
-              sx={{ pb: 0 }}
+              sx={{
+                pb: 0,
+                px: 1.5,
+                pt: 1.5,
+              }}
             />
 
-            <CardContent sx={{ pt: 2 }}>
+            <CardContent sx={{ pt: 1, px: 1.5, pb: 1.5 }}>
               <ContactForm onSubmit={handleSubmit} />
             </CardContent>
           </Card>

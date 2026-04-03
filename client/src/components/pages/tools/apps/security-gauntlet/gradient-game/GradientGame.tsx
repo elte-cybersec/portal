@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { type GameProps, THEME } from "./gauntlet.types";
-import { ScoreRow, GameHeader, Feedback } from "./gauntlet.ui";
+import { type GameProps, THEME } from "../gauntlet.types";
+import { ScoreRow, GameHeader, Feedback } from "../gauntlet.ui";
 
 const CW = 460;
 const CH = 300;
