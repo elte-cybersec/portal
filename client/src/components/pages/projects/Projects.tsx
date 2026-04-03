@@ -1,12 +1,29 @@
-import { Box, Container, Typography } from "@mui/material";
+import { useMemo, useState } from "react";
+import {
+  Box,
+  Container,
+  Typography,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import ProjectCard from "./ProjectCard";
 import type { ProjectMeta } from "../../../types";
+import { sortProjects, type ProjectSortMode } from "../../../utils/sortProjects";
 
 interface ProjectsProps {
   projects: ProjectMeta[];
 }
 
 export default function Projects({ projects }: ProjectsProps) {
+  const [sortMode, setSortMode] = useState<ProjectSortMode>("startDate-newest");
+
+  const sortedProjects = useMemo(
+    () => sortProjects(projects, sortMode),
+    [projects, sortMode]
+  );
+
   return (
     <Container
       maxWidth="xl"
@@ -15,7 +32,7 @@ export default function Projects({ projects }: ProjectsProps) {
         px: { xs: 2, sm: 3, md: 4 },
       }}
     >
-      <Box sx={{ textAlign: "center", mb: 4 }}>
+      <Box sx={{ textAlign: "center", mb: 3 }}>
         <Typography
           variant="h3"
           sx={{
@@ -38,6 +55,29 @@ export default function Projects({ projects }: ProjectsProps) {
 
       <Box
         sx={{
+          display: "flex",
+          justifyContent: { xs: "center", sm: "flex-end" },
+          mb: 3,
+        }}
+      >
+        <FormControl size="small" sx={{ minWidth: 170 }}>
+          <InputLabel id="project-sort-label">Sort by</InputLabel>
+          <Select
+            labelId="project-sort-label"
+            value={sortMode}
+            label="Sort by"
+            onChange={(e) => setSortMode(e.target.value as ProjectSortMode)}
+          >
+            <MenuItem value="startDate-newest">Newest first</MenuItem>
+            <MenuItem value="startDate-oldest">Oldest first</MenuItem>
+            <MenuItem value="title-asc">Title A to Z</MenuItem>
+            <MenuItem value="title-desc">Title Z to A</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+
+      <Box
+        sx={{
           display: "grid",
           gridTemplateColumns: {
             xs: "1fr",
@@ -46,7 +86,7 @@ export default function Projects({ projects }: ProjectsProps) {
           gap: 3,
         }}
       >
-        {projects.map((project) => (
+        {sortedProjects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}
       </Box>

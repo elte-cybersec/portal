@@ -14,11 +14,15 @@ import CyberGauntlet from "./components/pages/tools/apps/security-gauntlet/Cyber
 import PublicationsPage from "./components/pages/publications/PublicationsPage";
 import ToolsPage from "./components/pages/tools/ToolsPage";
 import ToolDetailsPage from "./components/pages/tools/ToolDetailsPage";
+import { sortProjects } from "./utils/sortProjects";
 
 export default function App() {
   const repositoryPages = getRepositoryPages();
   const parsedProjects = getParsedProjects(repositoryPages);
-  const projects = parsedProjects.map((item) => item.project);
+    const projects = sortProjects(
+    parsedProjects.map((item) => item.project),
+    "startDate-newest",
+  );
 
   useEffect(() => {
     document.title = siteConfig.browserTitle;
