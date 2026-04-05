@@ -14,17 +14,6 @@ export default function ToolsPage() {
           alignItems: "center",
         }}
       >
-        <Typography
-          sx={{
-            fontSize: { xs: 28, md: 34 },
-            fontWeight: 600,
-            lineHeight: 1.15,
-            color: "primary.main",
-            mb: 0.75,
-          }}
-        >
-          Applications
-        </Typography>
 
         <Typography
           sx={{

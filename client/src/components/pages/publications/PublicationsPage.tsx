@@ -59,19 +59,6 @@ export default function PublicationsPage() {
   return (
     <Container maxWidth="lg" sx={{ py: { xs: 3, md: 4 } }}>
       <Box sx={{ mb: 3 }}>
-
-        <Typography
-          sx={{
-            fontSize: { xs: 28, md: 34 },
-            fontWeight: 600,
-            lineHeight: 1.15,
-            color: "primary.main",
-            mb: 0.5,
-          }}
-        >
-          PUBLICATION ARCHIVE
-        </Typography>
-
         <Typography
             sx={{
                 fontSize: 13,

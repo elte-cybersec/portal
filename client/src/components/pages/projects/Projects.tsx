@@ -34,17 +34,6 @@ export default function Projects({ projects }: ProjectsProps) {
     >
       <Box sx={{ textAlign: "center", mb: 3 }}>
         <Typography
-          variant="h3"
-          sx={{
-            mb: 1,
-            fontWeight: 800,
-            color: "primary.main",
-          }}
-        >
-          Projects
-        </Typography>
-
-        <Typography
           variant="body1"
           color="text.secondary"
           sx={{ maxWidth: 760, mx: "auto" }}

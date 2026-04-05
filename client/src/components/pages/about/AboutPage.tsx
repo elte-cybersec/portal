@@ -8,19 +8,6 @@ export default function AboutPage() {
       <Stack spacing={2}>
         <Box>
           <Typography
-            variant="h3"
-            sx={{
-              fontWeight: 700,
-              color: "primary.main",
-              mb: 0.5,
-              fontSize: { xs: "1.6rem", md: "2rem" },
-              lineHeight: 1.1,
-            }}
-          >
-            About
-          </Typography>
-
-          <Typography
             color="text.secondary"
             sx={{
               fontSize: { xs: "0.95rem", md: "1rem" },
