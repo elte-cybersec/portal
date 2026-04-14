@@ -10,7 +10,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { teamData } from "../../../data/teamData";
 import TeamCard from "./TeamCard";
-import TeamMiniCard from "./Teamminicard";
+import TeamMiniCard from "./TeamMiniCard";
 
 
 const MINI_CARD_CATEGORIES = ["Students Alumni"];
