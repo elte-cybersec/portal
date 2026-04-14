@@ -12,6 +12,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useThemeMode } from "../../../MyThemeProvider";
 import AnimatedTitle from "./AnimatedTitle";
 import HeaderNavTabs from "./HeaderNavTabs";
+import UnderConstructionBadge from "./UnderConstructionBadge";
 import { siteConfig } from "../../../data/siteConfig";
 
 interface HeaderProps {
@@ -33,8 +34,11 @@ export default function Header({ sticky = true }: HeaderProps) {
         backgroundImage: "none",
         borderBottom: 1,
         borderColor: "divider",
+        overflow: "hidden",
       }}
     >
+      <UnderConstructionBadge />
+
       <Container maxWidth="xl" disableGutters>
         <Toolbar
           sx={{
@@ -46,11 +50,7 @@ export default function Header({ sticky = true }: HeaderProps) {
             gap: 1,
           }}
         >
-          <Box
-            sx={{
-              display: { xs: "none", md: "block" },
-            }}
-          />
+          <Box sx={{ display: { xs: "none", md: "block" } }} />
 
           <Box
             sx={{

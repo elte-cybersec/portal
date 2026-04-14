@@ -1,65 +1,50 @@
 import { Box, Button, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { HERO_STATS, HOME_THEME } from "./homePage-model";
+import { MainTitle } from "../../../data/HomePageData";
 
 export default function HomeHeroOverlay() {
+  const words = MainTitle.split(" ");
+  const mid = Math.ceil(words.length / 2);
+  const firstHalf = words.slice(0, mid).join(" ");
+  const secondHalf = words.slice(mid).join(" ");
+
   return (
     <Box
       sx={{
-        position: "absolute",
-        inset: 0,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        pointerEvents: "none",
         gap: 1.5,
         p: 4,
         textAlign: "center",
+        pt: 4,
+        pb: 0,
       }}
     >
-      <Typography
-        component="div"
-        sx={{
-          fontSize: 11,
-          letterSpacing: "3px",
-          color: HOME_THEME.green,
-          textTransform: "uppercase",
-          fontFamily: "monospace",
-        }}
-      >
-        ELTE Cybersecurity Lab
-      </Typography>
-
       <Typography
         variant="h3"
         component="h1"
         sx={{
-          fontSize: "clamp(1.4rem, 4vw, 2.4rem)",
+          fontSize: "clamp(1rem, 2.5vw, 1.6rem)",
           fontWeight: 500,
           color: HOME_THEME.textPrimary,
-          lineHeight: 1.2,
+          lineHeight: 1.4,
           m: 0,
+          maxWidth: 600,
         }}
       >
-        Securing the{" "}
-        <Box component="span" sx={{ color: HOME_THEME.green }}>
-          Connected World
+        {firstHalf}{" "}
+        <Box
+          component="span"
+          sx={{
+            color: "primary.light",
+            fontStyle: "italic",
+          }}
+        >
+          {secondHalf}
         </Box>
-      </Typography>
-
-      <Typography
-        component="p"
-        sx={{
-          fontSize: 13,
-          color: HOME_THEME.textMuted,
-          maxWidth: 360,
-          lineHeight: 1.6,
-          m: 0,
-        }}
-      >
-        Research in encryption, 5G trust, blockchain security, and network threat
-        management.
       </Typography>
 
       <Box sx={{ display: "flex", gap: 2.5, mt: 0.5 }}>
@@ -91,14 +76,7 @@ export default function HomeHeroOverlay() {
         ))}
       </Box>
 
-      <Box
-        sx={{
-          display: "flex",
-          gap: 1.25,
-          mt: 0.5,
-          pointerEvents: "all",
-        }}
-      >
+      <Box sx={{ mt: 0.5 }}>
         <Button
           component={RouterLink}
           to="/games"

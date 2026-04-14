@@ -5,7 +5,8 @@ export interface NavigationItem {
 
 export const navigationItems: NavigationItem[] = [
   { label: "Projects", path: "/projects" },
-  { label: "Contributors", path: "/about" },
+  { label: "Research", path: "/research" },
   { label: "Publications", path: "/publications" },
   { label: "Tools", path: "/tools" },
+  { label: "Team", path: "/team" },
 ];

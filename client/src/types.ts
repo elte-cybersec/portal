@@ -1,11 +1,16 @@
-export interface AboutPerson {
-  title: string;
+export interface TeamMember {
+  title?: string;
   name: string;
   familyName: string;
-  job: string;
-  extraInfo: string;
+  role: string;
+  extraInfo?: string;
   picture?: string;
   link?: string;
+}
+
+export interface TeamCategory {
+  category: string;
+  members: TeamMember[];
 }
 
 export interface ContactPageData {

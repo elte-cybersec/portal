@@ -1,15 +1,15 @@
 import { Box, Card, CardContent, Link, Stack, Typography } from "@mui/material";
-import type { AboutPerson } from "../../../types";
+import type { TeamMember } from "../../../types";
 import { resolveAssetPath } from "../../../utils/resolveAssetPath";
 
 const DEFAULT_AVATAR = "avatars/default_avatar.png";
 
-interface AboutCardProps {
-  person: AboutPerson;
+interface TeamCardProps {
+  member: TeamMember;
 }
 
-export default function AboutCard({ person }: AboutCardProps) {
-  const fullName = `${person.title} ${person.name} ${person.familyName}`;
+export default function TeamCard({ member }: TeamCardProps) {
+  const fullName = `${member.title ? member.title + " " : ""}${member.name} ${member.familyName}`;
 
   return (
     <Card
@@ -28,15 +28,13 @@ export default function AboutCard({ person }: AboutCardProps) {
           gap: 2,
           px: 2,
           py: 1.5,
-          "&:last-child": {
-            pb: 1.5,
-          },
+          "&:last-child": { pb: 1.5 },
         }}
       >
         <Box
           sx={(theme) => ({
-            width: 72,
-            height: 72,
+            width: 56,
+            height: 56,
             borderRadius: "50%",
             border: `2px solid ${theme.palette.primary.main}`,
             p: "2px",
@@ -52,7 +50,7 @@ export default function AboutCard({ person }: AboutCardProps) {
         >
           <Box
             component="img"
-            src={resolveAssetPath(person.picture || DEFAULT_AVATAR)}
+            src={resolveAssetPath(member.picture || DEFAULT_AVATAR)}
             alt={fullName}
             onError={(e) => {
               e.currentTarget.src = resolveAssetPath(DEFAULT_AVATAR);
@@ -68,24 +66,24 @@ export default function AboutCard({ person }: AboutCardProps) {
         </Box>
 
         <Stack
-          spacing={0.35}
+          spacing={0.3}
           sx={{
             flex: 1,
             minWidth: 0,
           }}
         >
-          {person.link ? (
+          {member.link ? (
             <Link
-              href={person.link}
+              href={member.link}
               target="_blank"
               rel="noopener noreferrer"
               underline="hover"
               sx={{
                 color: "primary.main",
                 fontWeight: 700,
-                fontSize: "1.15rem",
+                fontSize: "1rem",
                 lineHeight: 1.2,
-                width: "fit-content",
+                textAlign: "left",
               }}
             >
               {fullName}
@@ -95,33 +93,40 @@ export default function AboutCard({ person }: AboutCardProps) {
               sx={{
                 color: "primary.main",
                 fontWeight: 700,
-                fontSize: "1.15rem",
+                fontSize: "1rem",
                 lineHeight: 1.2,
+                textAlign: "left",
               }}
             >
               {fullName}
             </Typography>
           )}
 
-          <Typography
-            sx={{
-              fontSize: "0.98rem",
-              color: "text.primary",
-              lineHeight: 1.3,
-            }}
-          >
-            {person.job}
-          </Typography>
+          {member.role && (
+            <Typography
+              sx={{
+                fontSize: "0.875rem",
+                color: "text.primary",
+                lineHeight: 1.3,
+                textAlign: "center",
+              }}
+            >
+              {member.role}
+            </Typography>
+          )}
 
-          <Typography
-            sx={{
-              fontSize: "0.9rem",
-              color: "text.secondary",
-              lineHeight: 1.3,
-            }}
-          >
-            {person.extraInfo}
-          </Typography>
+          {member.extraInfo && (
+            <Typography
+              sx={{
+                fontSize: "0.8rem",
+                color: "text.secondary",
+                lineHeight: 1.3,
+                textAlign: "center",
+              }}
+            >
+              {member.extraInfo}
+            </Typography>
+          )}
         </Stack>
       </CardContent>
     </Card>
