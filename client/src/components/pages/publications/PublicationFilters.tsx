@@ -14,8 +14,6 @@ const FILTERS: { value: PublicationFilter; label: string }[] = [
   { value: "all", label: "ALL" },
   { value: "conference", label: "CONFERENCE" },
   { value: "journal", label: "JOURNAL" },
-  { value: "workshop", label: "WORKSHOP" },
-  { value: "preprint", label: "PREPRINT" },
   { value: "book-chapter", label: "BOOK CHAPTER" },
 ];
 

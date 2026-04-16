@@ -1,7 +1,6 @@
 export type PublicationType =
   | "conference"
   | "journal"
-  | "preprint"
   | "book-chapter";
 
 export interface PublicationItem {
