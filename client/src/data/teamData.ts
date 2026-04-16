@@ -10,7 +10,7 @@ export const teamData: TeamCategory[] = [
         familyName: "Alshawki",
         role: "Associate Professor",
         extraInfo:
-          "Supervisor of the ELTE Cybersecurity Lab. Specializes in applied cryptography, AI-driven security, and 6G network resilience. Holds a Ph.D. from ELTE and Furtwangen University, and a diploma from TU Berlin.",
+          "Supervisor of the ELTE Cybersecurity Lab. Specializes in applied cryptography, AI-driven security, and 6G network resilience.",
         picture: "avatars/alshawki.jpg",
         link: "https://malshawki.github.io/",
       },
@@ -19,6 +19,16 @@ export const teamData: TeamCategory[] = [
   {
     category: "Scientific Team",
     members: [
+      {
+        title: "Dr.",
+        name: "Péter",
+        familyName: "Ligeti",
+        role: "Associate Professor & Head of Department",
+        extraInfo:
+          "Head of the Department of Computer Algebra at ELTE. Research covers combinatorial optimization, cryptography, and secret sharing schemes.",
+        picture: "avatars/LigetiP.png",
+        link: "",
+      },
       {
         title: "Dr.",
         name: "Attila",
@@ -31,16 +41,6 @@ export const teamData: TeamCategory[] = [
       },
       {
         title: "Dr.",
-        name: "Péter",
-        familyName: "Ligeti",
-        role: "Associate Professor & Head of Department",
-        extraInfo:
-          "Head of the Department of Computer Algebra at ELTE. Research covers combinatorial optimization, cryptography, and secret sharing schemes. Author of over 40 papers with 300+ citations.",
-        picture: "avatars/LigetiP.png",
-        link: "",
-      },
-      {
-        title: "",
         name: "Máté",
         familyName: "Gyarmati",
         role: "Assistant Professor",
@@ -50,7 +50,7 @@ export const teamData: TeamCategory[] = [
         link: "https://hu.linkedin.com/in/m%C3%A1t%C3%A9-gyarmati-ba89719b",
       },
       {
-        title: "",
+        title: "Dr.",
         name: "István András",
         familyName: "Seres",
         role: "Assistant Professor",
@@ -59,19 +59,6 @@ export const teamData: TeamCategory[] = [
         picture: "avatars/Istavan Andras.jpg",
         link: "https://www.linkedin.com/in/seresistvanandras",
       },
-    ],
-  },
-  {
-    category: "Students Alumni",
-    members: [
-      { name: "Husnain",      familyName: "Ali",          role: "", picture: "", link: "" },
-      { name: "Nigar",        familyName: "Hajiyeva",     role: "", picture: "", link: "https://www.linkedin.com/in/nigar-hajiyeva-9b1554172/" },
-      { name: "Tamás",        familyName: "Horváth",      role: "", picture: "", link: "" },
-      { name: "Alex",         familyName: "Kovács",       role: "", picture: "", link: "" },
-      { name: "Seyed Pedram", familyName: "Mousaviazar",  role: "", picture: "", link: "" },
-      { name: "Tamás",        familyName: "Nagy",         role: "", picture: "", link: "" },
-      { name: "Anas",         familyName: "Obaid",        role: "", picture: "", link: "" },
-      { name: "Panna",        familyName: "Ottó",         role: "", picture: "", link: "" },
     ],
   },
   {
@@ -88,4 +75,27 @@ export const teamData: TeamCategory[] = [
       },
     ],
   },
+  {
+    category: "Students Alumni",
+    members: [
+      { name: "Husnain",      familyName: "Ali",                          role: "", picture: "", link: "" },
+      { name: "Nigar",        familyName: "Hajiyeva",                     role: "", picture: "", link: "https://www.linkedin.com/in/nigar-hajiyeva-9b1554172/" },
+      { name: "Tamás",        familyName: "Horváth",                      role: "", picture: "", link: "" },
+      { name: "Alex",         familyName: "Kovács",                       role: "", picture: "", link: "" },
+      { name: "Seyed Pedram", familyName: "Mousaviazar",                  role: "", picture: "", link: "" },
+      { name: "Tamás",        familyName: "Nagy",                         role: "", picture: "", link: "" },
+      { name: "Anas",         familyName: "Obaid",                        role: "", picture: "", link: "" },
+      { name: "Panna",        familyName: "Ottó",                         role: "", picture: "", link: "" },
+      { name: "Kanan",        familyName: "Orujov",                       role: "", picture: "", link: "" },
+      { name: "Obada",        familyName: "Al Naddaf",                    role: "", picture: "", link: "" },
+      { name: "Arun",         familyName: "Chittuparambil Polson",        role: "", picture: "", link: "" },
+      { name: "Nour",         familyName: "Hmeedan",                      role: "", picture: "", link: "" },
+      { name: "Nargiz",       familyName: "Aghayeva",                     role: "", picture: "", link: "" },
+      { name: "Yehao",        familyName: "Zhou",                         role: "", picture: "", link: "" },
+      { name: "Yasin",        familyName: "Abdullah",                     role: "", picture: "", link: "" },
+      { name: "Amina",        familyName: "Isazade",                      role: "", picture: "", link: "" },
+      { name: "Sanon",        familyName: "Isooba",                       role: "", picture: "", link: "" },
+    ],
+  },
+  
 ];

@@ -1,7 +1,6 @@
 export type PublicationType =
   | "conference"
   | "journal"
-  | "workshop"
   | "preprint"
   | "book-chapter";
 
@@ -18,6 +17,7 @@ export interface PublicationItem {
   url: string;
   doi?: string;
   publisher?: string;
+  venueIcon?: string; // filename from public/venue-icons/
 }
 
 export const publicationsData: PublicationItem[] = [
@@ -26,20 +26,29 @@ export const publicationsData: PublicationItem[] = [
     code: "PUB-2025-001",
     title:
       "Bribers, Bribers on The Chain, Is Resisting All in Vain? Trustless Consensus Manipulation Through Bribing Contracts",
-    authors: [],
-    venue: "IACR ePrint 2025/1719",
+    authors: [
+      "Bence Soóki-Tóth",
+      "István András Seres",
+      "Kamilla Kara",
+      "Ábel Nagy",
+      "Balázs Pejó",
+      "Gergely Biczók",
+    ],
+    venue: "ACM CCS 2025",
     year: 2025,
-    type: "preprint",
+    type: "conference",
     abstract:
       "A study of consensus manipulation through bribing contracts in blockchain systems, focusing on trustless bribery mechanisms and their impact on distributed consensus security.",
     tags: ["#blockchain", "#consensus", "#ethereum", "#smart-contracts"],
     url: "https://ia.cr/2025/1719",
-    publisher: "IACR",
+    publisher: "ACM",
+    venueIcon: "ccs25.png",
   },
   {
     id: "gdpr-compliance-iiot-2025",
     code: "PUB-2025-002",
-    title: "Blockchain-Enabled GDPR Compliance Enforcement for IIoT Data Access",
+    title:
+      "Blockchain-Enabled GDPR Compliance Enforcement for IIoT Data Access",
     authors: ["Amina Isazade", "Ali Malik", "Mohammed B. Alshawki"],
     venue: "Journal of Cybersecurity and Privacy",
     year: 2025,
@@ -50,14 +59,16 @@ export const publicationsData: PublicationItem[] = [
     url: "https://doi.org/10.3390/jcp5040084",
     doi: "10.3390/jcp5040084",
     publisher: "MDPI",
+    venueIcon: "jcp-logo.png",
   },
   {
-    id: "authentication-data-access-iiot-2025",
-    code: "PUB-2025-003",
-    title: "Authentication and Data Access Challenges in Safeguarding Industrial IoT",
-    authors: [],
-    venue: "Book Chapter",
-    year: 2025,
+    id: "authentication-data-access-iiot-2024",
+    code: "PUB-2024-003",
+    title:
+      "Authentication and Data Access Challenges in Safeguarding Industrial IoT",
+    authors: ["Mohammed-Oussama Fadel", "Mohammed B. Alshawki"],
+    venue: "ICRIC 2023 (Springer LNEE vol. 1195)",
+    year: 2024,
     type: "book-chapter",
     abstract:
       "A discussion of authentication and data access challenges in Industrial IoT environments, with emphasis on security boundaries and deployment realities.",
@@ -69,23 +80,31 @@ export const publicationsData: PublicationItem[] = [
   {
     id: "forking-the-randao-2025",
     code: "PUB-2025-004",
-    title: "Forking the RANDAO: Manipulating Ethereum's Distributed Randomness Beacon",
-    authors: [],
-    venue: "IACR ePrint 2025/037",
+    title:
+      "Forking the RANDAO: Manipulating Ethereum's Distributed Randomness Beacon",
+    authors: [
+      "Ábel Nagy",
+      "János Tapolcai",
+      "István András Seres",
+      "Bence Ladóczki",
+    ],
+    venue: "ACM CCS 2025",
     year: 2025,
-    type: "preprint",
+    type: "conference",
     abstract:
       "An analysis of Ethereum's RANDAO randomness beacon and how it can be manipulated through selective omission strategies in proof-of-stake consensus.",
     tags: ["#ethereum", "#randao", "#randomness", "#consensus"],
     url: "https://ia.cr/2025/037",
-    publisher: "IACR",
+    doi: "10.1145/3719027.3744852",
+    publisher: "ACM",
+    venueIcon: "ccs25.png",
   },
   {
     id: "keystone-auth-openstack-2025",
     code: "PUB-2025-005",
     title:
       "Securing Cloud and IoT Identity: An Analysis of Keystone Authentication Mechanisms in OpenStack",
-    authors: ["Obada Alnaddaf", "Mohammed Alshawki"],
+    authors: ["Obada Alnaddaf", "Mohammed B. Alshawki"],
     venue: "IEEE CIoT 2025",
     year: 2025,
     type: "conference",
@@ -95,27 +114,40 @@ export const publicationsData: PublicationItem[] = [
     url: "https://doi.org/10.1109/CIoT67574.2025.11410152",
     doi: "10.1109/CIoT67574.2025.11410152",
     publisher: "IEEE",
+    venueIcon: "ciot_2025.png",
   },
   {
     id: "byzantine-federated-learning-2025",
     code: "PUB-2025-006",
     title: "Byzantine-Resilient Federated Learning: Evaluating MPC Approaches",
-    authors: ["Yasin Abdullah", "Mohammed B. Alshawki", "Peter Ligeti", "Wissem Soussi", "Burkhard Stiller"],
-    venue: "IEEE ICDCS Workshops 2025",
+    authors: [
+      "Yasin Abdullah",
+      "Mohammed B. Alshawki",
+      "Peter Ligeti",
+      "Wissem Soussi",
+      "Burkhard Stiller",
+    ],
+    venue: "IEEE ICDCS 2025",
     year: 2025,
-    type: "workshop",
+    type: "conference",
     abstract:
       "An evaluation of MPC-based approaches for Byzantine-resilient federated learning with focus on robustness and practical tradeoffs.",
     tags: ["#federated-learning", "#MPC", "#Byzantine", "#robustness"],
     url: "https://doi.org/10.1109/ICDCSW63273.2025.00101",
     doi: "10.1109/ICDCSW63273.2025.00101",
     publisher: "IEEE",
+    venueIcon: "ICDCS2025.png",
   },
   {
     id: "post-quantum-ethereum-2025",
     code: "PUB-2025-007",
-    title: "Efficient, post-quantum signature verification on Ethereum",
-    authors: [],
+    title: "poqeth: Efficient, post-quantum signature verification on Ethereum",
+    authors: [
+      "Ruslan Kysil",
+      "István András Seres",
+      "Péter Kutas",
+      "Nándor Kelecsényi",
+    ],
     venue: "ACM AsiaCCS 2025",
     year: 2025,
     type: "conference",
@@ -131,7 +163,12 @@ export const publicationsData: PublicationItem[] = [
     code: "PUB-2025-008",
     title:
       "VITA: Verifiable Decentralized Authentication and Access Control in B5G/6G IoT Environments",
-    authors: [],
+    authors: [
+      "Mohammed B. Alshawki",
+      "Yehao Zhou",
+      "Sándor Laki",
+      "Péter Ligeti",
+    ],
     venue: "SoftCOM 2025",
     year: 2025,
     type: "conference",
@@ -141,12 +178,13 @@ export const publicationsData: PublicationItem[] = [
     url: "https://doi.org/10.23919/SoftCOM66362.2025.11197380",
     doi: "10.23919/SoftCOM66362.2025.11197380",
     publisher: "IEEE",
+    venueIcon: "softcom2025.jpg",
   },
   {
     id: "regulatory-compliance-verification-2024",
     code: "PUB-2024-001",
     title: "Regulatory Compliance Verification: A Privacy Preserving Approach",
-    authors: [],
+    authors: ["Massimo Morello", "Petri Sainio", "Mohammed B. Alshawki"],
     venue: "CSNet 2024",
     year: 2024,
     type: "conference",
@@ -156,12 +194,19 @@ export const publicationsData: PublicationItem[] = [
     url: "https://doi.org/10.1109/CSNet64211.2024.10851761",
     doi: "10.1109/CSNet64211.2024.10851761",
     publisher: "IEEE",
+    venueIcon: "csnet24.png",
   },
   {
     id: "shop-floor-auditing-2024",
     code: "PUB-2024-002",
     title: "Blockchain-Based Privacy-Preserving Shop Floor Auditing Architecture",
-    authors: ["Fatemeh Stodt", "Mohammed B. Alshawki", "Christoph Reich", "Fabrice Theoleyre", "Peter Ligeti"],
+    authors: [
+      "Fatemeh Stodt",
+      "Mohammed B. Alshawki",
+      "Christoph Reich",
+      "Fabrice Theoleyre",
+      "Peter Ligeti",
+    ],
     venue: "IEEE Access",
     year: 2024,
     type: "journal",
@@ -171,12 +216,19 @@ export const publicationsData: PublicationItem[] = [
     url: "https://doi.org/10.1109/ACCESS.2024.3366492",
     doi: "10.1109/ACCESS.2024.3366492",
     publisher: "IEEE",
+    venueIcon: "ieee_access.png",
   },
   {
     id: "distributed-cryptography-cpabe-2023",
     code: "PUB-2023-001",
-    title: "Distributed Cryptography for Lightweight Encryption in Decentralized CP-ABE",
-    authors: ["Mohammed B. Alshawki", "Janneke Van Oosterhout", "Péter Ligeti", "Christoph Reich"],
+    title:
+      "Distributed Cryptography for Lightweight Encryption in Decentralized CP-ABE",
+    authors: [
+      "Mohammed B. Alshawki",
+      "Janneke Van Oosterhout",
+      "Péter Ligeti",
+      "Christoph Reich",
+    ],
     venue: "WiMob 2023",
     year: 2023,
     type: "conference",
@@ -186,12 +238,18 @@ export const publicationsData: PublicationItem[] = [
     url: "https://doi.org/10.1109/WiMob58348.2023.10187882",
     doi: "10.1109/WiMob58348.2023.10187882",
     publisher: "IEEE",
+    venueIcon: "wimob.png",
   },
   {
     id: "attribute-verifier-iot-2022",
     code: "PUB-2022-001",
     title: "Attribute Verifier for Internet of Things",
-    authors: ["Mohammed B. Alshawki", "Yuping Yan", "Peter Ligeti", "Christoph Reich"],
+    authors: [
+      "Mohammed B. Alshawki",
+      "Yuping Yan",
+      "Peter Ligeti",
+      "Christoph Reich",
+    ],
     venue: "ITNAC 2022",
     year: 2022,
     type: "conference",
@@ -201,12 +259,19 @@ export const publicationsData: PublicationItem[] = [
     url: "https://doi.org/10.1109/ITNAC55475.2022.9998348",
     doi: "10.1109/ITNAC55475.2022.9998348",
     publisher: "IEEE",
+    venueIcon: "itnac.png",
   },
   {
     id: "key-exchange-cpabe-2022",
     code: "PUB-2022-002",
-    title: "Security Verification of Key Exchange in Ciphertext-Policy Attribute Based Encryption",
-    authors: ["Baasansuren Bat-Erdene", "Yuping Yan", "Mohammed B. M. Kamel", "Peter Ligeti"],
+    title:
+      "Security Verification of Key Exchange in Ciphertext-Policy Attribute Based Encryption",
+    authors: [
+      "Baasansuren Bat-Erdene",
+      "Yuping Yan",
+      "Mohammed B. M. Kamel",
+      "Peter Ligeti",
+    ],
     venue: "ICSIP 2022",
     year: 2022,
     type: "conference",

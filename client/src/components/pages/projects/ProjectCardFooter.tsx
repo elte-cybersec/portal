@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Typography } from "@mui/material";
+import { Box, Button, Divider } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import type { ProjectMeta } from "../../../types";
 
@@ -19,7 +19,7 @@ export default function ProjectCardFooter({ project }: ProjectCardFooterProps) {
           gap: 2,
         }}
       >
-        <Typography
+        {/* <Typography
           variant="body2"
           color="text.secondary"
           sx={{
@@ -27,7 +27,7 @@ export default function ProjectCardFooter({ project }: ProjectCardFooterProps) {
           }}
         >
           Start: {project.startDate ?? "TBD"} | End: {project.endDate ?? "TBD"}
-        </Typography>
+        </Typography> */}
 
         <Button
           component={RouterLink}
