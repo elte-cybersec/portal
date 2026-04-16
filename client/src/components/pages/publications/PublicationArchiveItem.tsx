@@ -357,35 +357,37 @@ export default function PublicationArchiveItem({
             ))}
           </Stack>
 
-          <Button
-            component="a"
-            href={publication.url}
-            target="_blank"
-            rel="noreferrer"
-            variant="outlined"
-            endIcon={<LaunchIcon sx={{ fontSize: 14 }} />}
-            sx={{
-              minHeight: 34,
-              px: 1.75,
-              py: 0.75,
-              borderRadius: 1,
-              fontSize: 11,
-              fontFamily: "monospace",
-              letterSpacing: "0.05em",
-              fontWeight: 600,
-              borderWidth: "0.5px",
-              borderColor: "divider",
-              color: "primary.main",
-              backgroundColor: "transparent",
-              "&:hover": {
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              component="a"
+              href={publication.url}
+              target="_blank"
+              rel="noreferrer"
+              variant="outlined"
+              endIcon={<LaunchIcon sx={{ fontSize: 14 }} />}
+              sx={{
+                minHeight: 34,
+                px: 1.75,
+                py: 0.75,
+                borderRadius: 1,
+                fontSize: 11,
+                fontFamily: "monospace",
+                letterSpacing: "0.05em",
+                fontWeight: 600,
                 borderWidth: "0.5px",
-                borderColor: "text.primary",
-                backgroundColor: "action.hover",
-              },
-            }}
-          >
-            ACCESS FILE
-          </Button>
+                borderColor: "divider",
+                color: "primary.main",
+                backgroundColor: "transparent",
+                "&:hover": {
+                  borderWidth: "0.5px",
+                  borderColor: "text.primary",
+                  backgroundColor: "action.hover",
+                },
+              }}
+            >
+              ACCESS FILE
+            </Button>
+          </Box>
         </Box>
       </Collapse>
 
