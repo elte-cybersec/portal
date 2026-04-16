@@ -5,6 +5,7 @@ export type { ThemeMode };
 
 export function createAppTheme(mode: ThemeMode) {
   const tokens = themeTokens[mode];
+  const isDark = mode === "dark";
 
   return createTheme({
     palette: {
@@ -17,7 +18,7 @@ export function createAppTheme(mode: ThemeMode) {
       },
       secondary: {
         main: tokens.secondaryMain,
-        contrastText: tokens.white,
+        contrastText: isDark ? tokens.backgroundDefault : tokens.white,
       },
       background: {
         default: tokens.backgroundDefault,
@@ -53,7 +54,7 @@ export function createAppTheme(mode: ThemeMode) {
       MuiAppBar: {
         styleOverrides: {
           root: {
-            backgroundColor: tokens.secondaryMain,
+            backgroundColor: tokens.surfaceAlt,
             color: tokens.white,
             boxShadow: "none",
           },
@@ -66,9 +67,41 @@ export function createAppTheme(mode: ThemeMode) {
             borderRadius: 999,
             textTransform: "none",
             fontWeight: 600,
+            transition:
+              "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease",
           },
+
           containedPrimary: {
-            color: tokens.white,
+            backgroundColor: tokens.primaryDark,
+            color: tokens.onPrimaryDark,
+            "&:hover": {
+              backgroundColor: tokens.primaryLight,
+              color: tokens.onPrimaryLight,
+              boxShadow: isDark
+                ? "0 4px 14px rgba(0,0,0,0.28)"
+                : "0 4px 14px rgba(0,0,0,0.12)",
+            },
+          },
+
+          outlinedPrimary: {
+            borderColor: tokens.primaryDark,
+            color: tokens.primaryDark,
+            "&:hover": {
+              borderColor: tokens.primaryLight,
+              color: tokens.primaryLight,
+              backgroundColor: isDark
+                ? "rgba(255,255,255,0.04)"
+                : "rgba(0,0,0,0.04)",
+            },
+          },
+
+          textPrimary: {
+            color: tokens.secondaryMain,
+            "&:hover": {
+              backgroundColor: isDark
+                ? "rgba(255,255,255,0.04)"
+                : "rgba(0,0,0,0.04)",
+            },
           },
         },
       },

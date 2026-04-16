@@ -18,15 +18,18 @@ export interface AppThemeTokens {
   surfaceAlt: string;
 
   white: string;
+
+  onPrimaryDark: string;
+  onPrimaryLight: string;
 }
 
 export const themeTokens: Record<ThemeMode, AppThemeTokens> = {
   light: {
     primaryMain: "#3fc7cd",
-    primaryLight: "#3fd7dfff",
+    primaryLight: "#72e3e8",
     primaryDark: "#0c8d98",
 
-    secondaryMain: "#032f63",
+    secondaryMain: "#111111",
 
     backgroundDefault: "#f2f2f2",
     backgroundPaper: "#ffffff",
@@ -39,14 +42,17 @@ export const themeTokens: Record<ThemeMode, AppThemeTokens> = {
     surfaceAlt: "#032f63",
 
     white: "#ffffff",
+
+    onPrimaryDark: "#ffffff",
+    onPrimaryLight: "#111111",
   },
 
   dark: {
     primaryMain: "#10aeb4",
-    primaryLight: "#35c4c9",
+    primaryLight: "#4ed9df",
     primaryDark: "#0b7f92",
 
-    secondaryMain: "#062f63",
+    secondaryMain: "#ffffff",
 
     backgroundDefault: "#0f1720",
     backgroundPaper: "#16222d",
@@ -56,8 +62,11 @@ export const themeTokens: Record<ThemeMode, AppThemeTokens> = {
 
     divider: "rgba(255,255,255,0.12)",
 
-    surfaceAlt: "#0b3a6f",
+    surfaceAlt: "#062f63",
 
     white: "#ffffff",
+
+    onPrimaryDark: "#ffffff",
+    onPrimaryLight: "#111111",
   },
 };

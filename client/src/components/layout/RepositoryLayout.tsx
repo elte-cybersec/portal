@@ -21,7 +21,7 @@ export default function RepositoryLayout({
   }
 
   return (
-    <Container maxWidth="xl" sx={{ py: 3 }}>
+    <Container maxWidth="lg" sx={{ py: 3 }}>
       <Box
         sx={{
           display: "grid",
