@@ -16,44 +16,18 @@ import {
   Typography,
   alpha,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import type { PublicationItem } from "../../../data/publicationsData";
 import { resolveAssetPath } from "../../../utils/resolveAssetPath";
+import {
+  getPublicationTypeShortLabel,
+  getPublicationTypeStyles,
+} from "./publication.helper";
 
 interface PublicationArchiveItemProps {
   publication: PublicationItem;
   expanded: boolean;
   onToggle: () => void;
-}
-
-function getTypeShortLabel(type: PublicationItem["type"]) {
-  switch (type) {
-    case "conference":
-      return "CONF";
-    case "journal":
-      return "JOUR";
-    case "book-chapter":
-      return "BOOK";
-  }
-}
-
-function getTypeBadgeStyles(type: PublicationItem["type"]) {
-  switch (type) {
-    case "conference":
-      return {
-        backgroundColor: "#E6F1FB",
-        color: "#185FA5",
-      };
-    case "journal":
-      return {
-        backgroundColor: "#E1F5EE",
-        color: "#0F6E56",
-      };
-    case "book-chapter":
-      return {
-        backgroundColor: "#FDECEF",
-        color: "#A23352",
-      };
-  }
 }
 
 function buildVenueIconPath(
@@ -69,9 +43,12 @@ export default function PublicationArchiveItem({
   expanded,
   onToggle,
 }: PublicationArchiveItemProps) {
-  const badgeStyles = useMemo(
-    () => getTypeBadgeStyles(publication.type),
-    [publication.type]
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
+
+  const typeStyles = useMemo(
+    () => getPublicationTypeStyles(publication.type, isDarkMode),
+    [publication.type, isDarkMode]
   );
 
   const venueIconSrc = useMemo(
@@ -142,15 +119,17 @@ export default function PublicationArchiveItem({
             fontWeight: 600,
             letterSpacing: "0.04em",
             flexShrink: 0,
-            ...badgeStyles,
+            backgroundColor: typeStyles.badgeBg,
+            color: typeStyles.badgeText,
+            border: `0.5px solid ${typeStyles.badgeBorder}`,
           }}
         >
-          {getTypeShortLabel(publication.type)}
+          {getPublicationTypeShortLabel(publication.type)}
         </Box>
 
         {showIcon ? (
           <Box
-            sx={(theme) => ({
+            sx={{
               width: 56,
               height: 32,
               flexShrink: 0,
@@ -158,12 +137,11 @@ export default function PublicationArchiveItem({
               alignItems: "center",
               justifyContent: "center",
               borderRadius: "5px",
-              border: "0.5px solid",
-              borderColor: theme.palette.primary.light,
-              backgroundColor: theme.palette.primary.light,
+              border: `0.5px solid ${typeStyles.logoBorder}`,
+              backgroundColor: typeStyles.logoBg,
               overflow: "hidden",
               p: 0.5,
-            })}
+            }}
           >
             <Box
               component="img"
@@ -273,16 +251,15 @@ export default function PublicationArchiveItem({
                         setLightboxOpen(true);
                       }
                     }}
-                    sx={(theme) => ({
+                    sx={{
                       width: 72,
                       height: 40,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       borderRadius: "6px",
-                      border: "0.5px solid",
-                      borderColor: theme.palette.primary.light,
-                      backgroundColor: theme.palette.primary.light,
+                      border: `0.5px solid ${typeStyles.logoBorder}`,
+                      backgroundColor: typeStyles.logoBg,
                       overflow: "hidden",
                       p: 0.625,
                       flexShrink: 0,
@@ -291,17 +268,16 @@ export default function PublicationArchiveItem({
                         "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease",
                       "&:hover": {
                         transform: "translateY(-1px)",
-                        borderColor: theme.palette.primary.main,
-                        boxShadow: `0 3px 10px ${alpha(
-                          theme.palette.primary.main,
-                          0.25
-                        )}`,
+                        borderColor: typeStyles.logoBorder,
+                        boxShadow: isDarkMode
+                          ? `0 3px 10px ${alpha(typeStyles.badgeText, 0.25)}`
+                          : `0 3px 10px ${alpha(typeStyles.badgeText, 0.16)}`,
                       },
                       "&:focus-visible": {
-                        outline: `2px solid ${theme.palette.primary.main}`,
+                        outline: `2px solid ${typeStyles.badgeText}`,
                         outlineOffset: 2,
                       },
-                    })}
+                    }}
                   >
                     <Box
                       component="img"
@@ -434,7 +410,7 @@ export default function PublicationArchiveItem({
         >
           <Fade in={lightboxOpen} timeout={250}>
             <Box
-              sx={(theme) => ({
+              sx={{
                 position: "relative",
                 width: "100%",
                 maxWidth: 520,
@@ -444,39 +420,37 @@ export default function PublicationArchiveItem({
                 boxShadow: `0 24px 60px ${alpha("#000", 0.35)}`,
                 overflow: "hidden",
                 outline: "none",
-              })}
+              }}
             >
               <IconButton
                 aria-label="Close preview"
                 onClick={handleLightboxClose}
-                sx={(theme) => ({
+                sx={{
                   position: "absolute",
                   top: 8,
                   right: 8,
                   zIndex: 1,
                   color: theme.palette.text.secondary,
-                  backgroundColor: alpha(
-                    theme.palette.background.paper,
-                    0.85
-                  ),
+                  backgroundColor: alpha(theme.palette.background.paper, 0.85),
                   "&:hover": {
                     backgroundColor: theme.palette.background.paper,
                     color: theme.palette.text.primary,
                   },
-                })}
+                }}
               >
                 <CloseIcon sx={{ fontSize: 20 }} />
               </IconButton>
 
               <Box
-                sx={(theme) => ({
-                  backgroundColor: theme.palette.primary.light,
+                sx={{
+                  backgroundColor: typeStyles.logoBg,
+                  borderBottom: `0.5px solid ${typeStyles.logoBorder}`,
                   p: { xs: 4, sm: 6 },
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   minHeight: 240,
-                })}
+                }}
               >
                 <Box
                   component="img"
