@@ -1,5 +1,8 @@
 export interface ResearchArea {
+  id: string;
   title: string;
+  icon: string;
+  color: string;
   intro: string;
   description: string;
 }
@@ -9,42 +12,60 @@ export const researchPageIntro =
 
 export const researchAreas: ResearchArea[] = [
   {
+    id: "ai-security",
     title: "AI Security",
+    icon: "AI",
+    color: "#5eead4",
     intro:
       "Security and privacy of modern machine learning systems, adversarial ML, and federated learning.",
     description:
       "We study the security and privacy of modern machine learning systems, with particular interest in adversarial machine learning, federated learning, and the robustness of distributed AI pipelines. Our work examines how learning systems fail under poisoning, inference, evasion, and privacy attacks, and how these risks can be mitigated through robust training, secure aggregation, anomaly detection, and privacy-preserving mechanisms. We are also interested in broader questions around trustworthy AI deployment, including the security of model supply chains, the protection of training data and model updates, and the emerging attack surface of foundation models and agentic AI systems.",
   },
   {
+    id: "applied-cryptography",
     title: "Applied Cryptography",
+    icon: "{ }",
+    color: "#72e3e8",
     intro:
       "Secure computation, post-quantum cryptography, and privacy-enhancing cryptographic protocols.",
     description:
       "The lab works on applied cryptography at the intersection of rigorous security models and deployable mechanisms. Our interests include secure multiparty computation, attribute-based encryption, privacy-enhancing cryptographic protocols, and the comparative analysis of real-world cryptographic constructions. A major current focus is post-quantum cryptography: understanding the security, efficiency, and implementation trade-offs of quantum-resistant key exchange, encryption, and signature schemes, especially in constrained environments such as IoT devices, embedded systems, and smart cards. We are also interested in transition questions and how cryptographic systems move from classical to post-quantum standards in practice, as well as quantum key distribution and other quantum-enabled security mechanisms.",
   },
   {
+    id: "cloud-identity",
     title: "Cloud Security and Digital Identity",
+    icon: "☁",
+    color: "#93c5fd",
     intro:
       "Authentication, access control, decentralized identity, and zero-trust architectures for cloud environments.",
     description:
       "Our research in cloud security focuses on authentication, access control, identity federation, and adaptive security mechanisms for modern cloud environments. We are interested in how cloud infrastructures can move beyond static trust assumptions toward context-aware and risk-aware security. A major direction of the lab is the integration of modern identity technologies, including decentralized identity and verifiable credentials, into practical cloud platforms. We also follow broader developments in zero-trust architectures, cloud-native security controls, and operational resilience, especially as these become increasingly important in European cybersecurity practice and governance.",
   },
   {
+    id: "blockchain-security",
     title: "Cryptocurrency and Blockchain Security",
+    icon: "⛓",
+    color: "#fbbf24",
     intro:
       "Security, privacy, and transparency in blockchain systems and cryptocurrency ecosystems.",
     description:
       "We investigate security, privacy, and transparency in blockchain-based systems and cryptocurrency ecosystems. One pillar of work studies public ledger data as a rich source for security analysis, network measurement, and behavioural insight, including transaction graph structure, ecosystem-level risk patterns, and the privacy properties of different cryptocurrency designs. Another pillar of work examines the security and privacy of wallet software, user-facing applications, and decentralized finance infrastructures. More broadly, we are interested in how blockchain systems can be analysed as real-world socio-technical systems, where protocol guarantees, implementation choices, and user behaviour interact in complex ways.",
   },
   {
+    id: "number-theory",
     title: "Modelling and Applied Number Theory",
+    icon: "π",
+    color: "#c4b5fd",
     intro:
       "Mathematical modelling and number-theoretic methods for cryptographic analysis and secure system design.",
     description:
       "We work on mathematical modelling and applied number theory as tools for understanding and improving security systems. This includes the use of formal models, probabilistic reasoning, and number-theoretic methods in the analysis of cryptographic constructions, protocols, and attack surfaces. We are interested both in the mathematical foundations that support secure system design and in the role of modelling in evaluating the behaviour, efficiency, and limitations of real-world security mechanisms.",
   },
   {
+    id: "network-security",
     title: "Next-Generation Network Security",
+    icon: "⌁",
+    color: "#f0abfc",
     intro:
       "Authentication, privacy, and resilience in 5G and next-generation mobile network architectures.",
     description:

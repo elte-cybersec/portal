@@ -17,6 +17,7 @@ import ToolDetailsPage from "./components/pages/tools/ToolDetailsPage";
 import { sortProjects } from "./utils/sortProjects";
 import ScrollToTop from "./ScrollToTop";
 import ResearchPage from "./components/pages/research/ResearchPage";
+import OperationsPage from "./components/pages/operations/OperationsPage";
 
 export default function App() {
   const repositoryPages = getRepositoryPages();
@@ -42,6 +43,7 @@ export default function App() {
             <Route path="games" element={<CyberGauntlet />} />
             <Route path="publications" element={<PublicationsPage />} />
             <Route path="research" element={<ResearchPage />} />
+            <Route path="operations" element={<OperationsPage />} />
             
 
             <Route path="tools" element={<ToolsPage />} />

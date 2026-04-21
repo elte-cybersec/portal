@@ -6,6 +6,8 @@ import {
   Divider,
   Stack,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { teamData } from "../../../data/teamData";
@@ -18,6 +20,8 @@ const MINI_CARD_CATEGORIES = ["Students Alumni"];
 
 export default function TeamPage() {
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
 
   const toggleSection = (category: string) => {
     setCollapsed((prev) => ({
@@ -95,39 +99,60 @@ export default function TeamPage() {
 
               <Collapse in={!isCollapsed} timeout={250}>
                 {isMini ? (
-
-                  <Stack spacing={1}>
-                    {chunk(group.members, 2).map((pair, rowIndex) => (
-                      <Box
-                        key={rowIndex}
-                        sx={{
-                          display: "grid",
-                          gridTemplateColumns:
-                            pair.length === 2 ? "1fr 1fr" : "1fr",
-                          border: 1,
-                          borderColor: "divider",
-                          borderRadius: 1,
-                          overflow: "hidden",
-                          bgcolor: "background.paper",
-                        }}
-                      >
-                        {pair.map((member, i) => (
-                          <Box
-                            key={`${member.name}-${member.familyName}`}
-                            sx={{
-                              borderRight:
-                                pair.length === 2 && i === 0 ? 1 : 0,
-                              borderColor: "divider",
-                            }}
-                          >
-                            <TeamMiniCard member={member} />
-                          </Box>
-                        ))}
-                      </Box>
-                    ))}
-                  </Stack>
+                  isDesktop ? (
+                    <Stack spacing={1}>
+                      {chunk(group.members, 2).map((pair, rowIndex) => (
+                        <Box
+                          key={rowIndex}
+                          sx={{
+                            display: "grid",
+                            gridTemplateColumns:
+                              pair.length === 2
+                                ? "minmax(0, 1fr) minmax(0, 1fr)"
+                                : "minmax(0, 1fr)",
+                            border: 1,
+                            borderColor: "divider",
+                            borderRadius: 1,
+                            overflow: "hidden",
+                            bgcolor: "background.paper",
+                          }}
+                        >
+                          {pair.map((member, i) => (
+                            <Box
+                              key={`${member.name}-${member.familyName}`}
+                              sx={{
+                                borderRight:
+                                  pair.length === 2 && i === 0 ? 1 : 0,
+                                borderColor: "divider",
+                                minWidth: 0,
+                              }}
+                            >
+                              <TeamMiniCard member={member} />
+                            </Box>
+                          ))}
+                        </Box>
+                      ))}
+                    </Stack>
+                  ) : (
+                    <Stack spacing={1}>
+                      {group.members.map((member, index) => (
+                        <Box
+                          key={`${member.name}-${member.familyName}-${index}`}
+                          sx={{
+                            border: 1,
+                            borderColor: "divider",
+                            borderRadius: 1,
+                            overflow: "hidden",
+                            bgcolor: "background.paper",
+                            minWidth: 0,
+                          }}
+                        >
+                          <TeamMiniCard member={member} />
+                        </Box>
+                      ))}
+                    </Stack>
+                  )
                 ) : (
-
                   <Stack spacing={1.5}>
                     {group.members.map((member, index) => (
                       <TeamCard

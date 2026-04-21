@@ -15,7 +15,7 @@ export default function ProjectCardFooter({ project }: ProjectCardFooterProps) {
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: "center",
           gap: 2,
         }}
       >

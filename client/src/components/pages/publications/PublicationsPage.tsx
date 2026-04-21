@@ -1,12 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Box, Container, Pagination, Typography } from "@mui/material";
 
 import { publicationsData } from "../../../data/publicationsData";
 import {
+  getUniqueAuthors,
   searchPublications,
   sortPublications,
   type PublicationFilter,
-} from "../../../utils/publications";
+} from "./publications";
 
 import PublicationArchiveItem from "./PublicationArchiveItem";
 import PublicationEmptyState from "./PublicationEmptyState";
@@ -18,10 +19,19 @@ export default function PublicationsPage() {
   const [selectedFilter, setSelectedFilter] = useState<PublicationFilter>("all");
   const [searchText, setSearchText] = useState("");
   const [year, setYear] = useState("");
+  const [activeTags, setActiveTags] = useState<string[]>([]);
+  const [selectedAuthor, setSelectedAuthor] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [page, setPage] = useState(1);
 
+  const filtersRef = useRef<HTMLDivElement | null>(null);
+
   const sortedItems = useMemo(() => sortPublications(publicationsData), []);
+
+  const authorOptions = useMemo(
+    () => getUniqueAuthors(publicationsData),
+    []
+  );
 
   const filteredItems = useMemo(
     () =>
@@ -29,8 +39,10 @@ export default function PublicationsPage() {
         type: selectedFilter,
         searchText,
         year,
+        tags: activeTags,
+        author: selectedAuthor,
       }),
-    [selectedFilter, searchText, year, sortedItems]
+    [selectedFilter, searchText, year, activeTags, selectedAuthor, sortedItems]
   );
 
   const pageCount = Math.max(1, Math.ceil(filteredItems.length / ITEMS_PER_PAGE));
@@ -44,7 +56,7 @@ export default function PublicationsPage() {
   useEffect(() => {
     setPage(1);
     setExpandedId(null);
-  }, [selectedFilter, searchText, year]);
+  }, [selectedFilter, searchText, year, activeTags, selectedAuthor]);
 
   useEffect(() => {
     if (page > pageCount) {
@@ -56,58 +68,79 @@ export default function PublicationsPage() {
     setExpandedId((current) => (current === id ? null : id));
   };
 
+  const handleTagClick = (tag: string) => {
+    setActiveTags((prev) => {
+      if (prev.some((t) => t.toLowerCase() === tag.toLowerCase())) {
+        return prev;
+      }
+      return [...prev, tag];
+    });
+    filtersRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const handleRemoveTag = (tag: string) => {
+    setActiveTags((prev) =>
+      prev.filter((t) => t.toLowerCase() !== tag.toLowerCase())
+    );
+  };
+
+  const handleClearAll = () => {
+    setActiveTags([]);
+    setSelectedAuthor(null);
+  };
+
   return (
     <Container maxWidth="lg" sx={{ py: { xs: 3, md: 4 } }}>
       <Box sx={{ mb: 3 }}>
         <Typography
+          sx={{
+            fontSize: 13,
+            fontFamily: "monospace",
+            color: "text.secondary",
+            display: "flex",
+            alignItems: "center",
+            gap: 0.75,
+          }}
+        >
+          <Box
+            component="span"
             sx={{
-                fontSize: 13,
-                fontFamily: "monospace",
-                color: "text.secondary",
-                display: "flex",
-                alignItems: "center",
-                gap: 0.75,
+              width: 7,
+              height: 7,
+              borderRadius: "50%",
+              backgroundColor: "#1D9E75",
+              display: "inline-block",
+              flexShrink: 0,
             }}
-            >
-            <Box
-                component="span"
-                sx={{
-                width: 7,
-                height: 7,
-                borderRadius: "50%",
-                backgroundColor: "#1D9E75",
-                display: "inline-block",
-                flexShrink: 0,
-                }}
-            />
-            [CLEARANCE: PUBLIC] -{" "}
-            <Box
-                component="span"
-                sx={{
-                color: "#1D9E75",
-                fontWeight: 700,
-                }}
-            >
-                {filteredItems.length}
-            </Box>{" "}
-            record{filteredItems.length === 1 ? "" : "s"} indexed
-            </Typography>
+          />
+          [CLEARANCE: PUBLIC] -{" "}
+          <Box
+            component="span"
+            sx={{
+              color: "#1D9E75",
+              fontWeight: 700,
+            }}
+          >
+            {filteredItems.length}
+          </Box>{" "}
+          record{filteredItems.length === 1 ? "" : "s"} indexed
+        </Typography>
       </Box>
 
-      <Box sx={{ mb: 2 }}>
+      <Box ref={filtersRef} sx={{ mb: 2, scrollMarginTop: 16 }}>
         <PublicationFilters
           selectedFilter={selectedFilter}
           searchText={searchText}
           year={year}
-          onFilterChange={(filter) => {
-            setSelectedFilter(filter);
-          }}
-          onSearchTextChange={(value) => {
-            setSearchText(value);
-          }}
-          onYearChange={(value) => {
-            setYear(value);
-          }}
+          activeTags={activeTags}
+          selectedAuthor={selectedAuthor}
+          authorOptions={authorOptions}
+          onFilterChange={setSelectedFilter}
+          onSearchTextChange={setSearchText}
+          onYearChange={setYear}
+          onRemoveTag={handleRemoveTag}
+          onAuthorChange={setSelectedAuthor}
+          onClearAll={handleClearAll}
         />
       </Box>
 
@@ -130,7 +163,9 @@ export default function PublicationsPage() {
               key={publication.id}
               publication={publication}
               expanded={expandedId === publication.id}
+              activeTags={activeTags}
               onToggle={() => handleToggle(publication.id)}
+              onTagClick={handleTagClick}
             />
           ))
         )}

@@ -27,7 +27,9 @@ import {
 interface PublicationArchiveItemProps {
   publication: PublicationItem;
   expanded: boolean;
+  activeTags: string[];
   onToggle: () => void;
+  onTagClick: (tag: string) => void;
 }
 
 function buildVenueIconPath(
@@ -41,7 +43,9 @@ function buildVenueIconPath(
 export default function PublicationArchiveItem({
   publication,
   expanded,
+  activeTags,
   onToggle,
+  onTagClick,
 }: PublicationArchiveItemProps) {
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === "dark";
@@ -60,12 +64,22 @@ export default function PublicationArchiveItem({
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const showIcon = Boolean(venueIconSrc) && !iconFailed;
 
+  const activeTagsLower = useMemo(
+    () => activeTags.map((t) => t.toLowerCase()),
+    [activeTags]
+  );
+
   const handleLightboxOpen = (event: React.MouseEvent) => {
     event.stopPropagation();
     setLightboxOpen(true);
   };
 
   const handleLightboxClose = () => setLightboxOpen(false);
+
+  const handleTagClick = (tag: string, event: React.MouseEvent) => {
+    event.stopPropagation();
+    onTagClick(tag);
+  };
 
   return (
     <Box
@@ -334,27 +348,50 @@ export default function PublicationArchiveItem({
             flexWrap="wrap"
             sx={{ mt: 1.25, mb: 1.5 }}
           >
-            {publication.tags.map((tag) => (
-              <Chip
-                key={tag}
-                label={tag}
-                size="small"
-                sx={{
-                  height: 22,
-                  borderRadius: 10,
-                  fontSize: 10,
-                  fontFamily: "monospace",
-                  letterSpacing: "0.04em",
-                  color: "text.secondary",
-                  border: "0.5px solid",
-                  borderColor: "divider",
-                  backgroundColor: "transparent",
-                  "& .MuiChip-label": {
-                    px: 1,
-                  },
-                }}
-              />
-            ))}
+            {publication.tags.map((tag) => {
+              const isActive = activeTagsLower.includes(tag.toLowerCase());
+              return (
+                <Chip
+                  key={tag}
+                  label={tag}
+                  size="small"
+                  onClick={(e) => handleTagClick(tag, e)}
+                  sx={(theme) => ({
+                    height: 22,
+                    borderRadius: 10,
+                    fontSize: 10,
+                    fontFamily: "monospace",
+                    letterSpacing: "0.04em",
+                    cursor: "pointer",
+                    color: isActive
+                      ? theme.palette.primary.main
+                      : "text.secondary",
+                    border: "0.5px solid",
+                    borderColor: isActive
+                      ? theme.palette.primary.main
+                      : "divider",
+                    backgroundColor: isActive
+                      ? theme.palette.mode === "dark"
+                        ? "rgba(16,174,180,0.12)"
+                        : "rgba(63,199,205,0.12)"
+                      : "transparent",
+                    transition:
+                      "color 0.15s, border-color 0.15s, background-color 0.15s",
+                    "& .MuiChip-label": {
+                      px: 1,
+                    },
+                    "&:hover": {
+                      color: theme.palette.primary.main,
+                      borderColor: theme.palette.primary.main,
+                      backgroundColor:
+                        theme.palette.mode === "dark"
+                          ? "rgba(16,174,180,0.08)"
+                          : "rgba(63,199,205,0.08)",
+                    },
+                  })}
+                />
+              );
+            })}
           </Stack>
 
           <Box sx={{ display: "flex", justifyContent: "center" }}>

@@ -1,5 +1,5 @@
 import { Box, Card, CardContent, Chip, Divider, Typography } from "@mui/material";
-import { teamProjectsData } from "../../../data/TeamProjectsData";
+import { teamProjectsData } from "../../../data/operationPageData";
 import PeopleIcon from "@mui/icons-material/People";
 import CodeIcon from "@mui/icons-material/Code";
 import BugReportIcon from "@mui/icons-material/BugReport";
