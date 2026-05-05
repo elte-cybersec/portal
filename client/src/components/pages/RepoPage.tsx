@@ -8,10 +8,10 @@ import rehypeSlug from "rehype-slug";
 import "github-markdown-css/github-markdown.css";
 import "highlight.js/styles/github-dark.css";
 
-import type { ParsedRepositorySection, ProjectMeta } from "../../types";
+import type { ParsedRepositorySection, CodebaseMeta } from "../../types";
 
 interface RepoPageProps {
-  project: ProjectMeta;
+  project: CodebaseMeta;
   currentSection: ParsedRepositorySection;
   sections: ParsedRepositorySection[];
 }
