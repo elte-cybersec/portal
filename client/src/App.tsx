@@ -5,24 +5,25 @@ import RepositoryLayout from "./components/layout/RepositoryLayout";
 import HomePage from "./components/pages/Home/HomePage";
 import TeamPage  from "./components/pages/team/TeamPage";
 import ContactPage from "./components/pages/contact-us/ContactPage";
-import Projects from "./components/pages/projects/Projects";
+import Codebase from "./components/pages/codebase/Codebase";
 import RepoPageWrapper from "./components/pages/RepoPageWrapper";
 import { getRepositoryPages } from "./utils/getRepositoryPages";
-import { getParsedProjects } from "./utils/getProjects";
+import { getParsedCodebase } from "./utils/getCodebases";
 import { siteConfig } from "./data/siteConfig";
 import CyberGauntlet from "./components/pages/tools/apps/security-gauntlet/CyberGauntlet";
 import PublicationsPage from "./components/pages/publications/PublicationsPage";
 import ToolsPage from "./components/pages/tools/ToolsPage";
 import ToolDetailsPage from "./components/pages/tools/ToolDetailsPage";
-import { sortProjects } from "./utils/sortProjects";
+import { sortCodebase } from "./utils/sortCodebase";
 import ScrollToTop from "./ScrollToTop";
 import ResearchPage from "./components/pages/research/ResearchPage";
 import OperationsPage from "./components/pages/operations/OperationsPage";
+import ProjectsPage from "./components/pages/projects/ProjectsPage";
 
 export default function App() {
   const repositoryPages = getRepositoryPages();
-  const parsedProjects = getParsedProjects(repositoryPages);
-    const projects = sortProjects(
+  const parsedProjects = getParsedCodebase(repositoryPages);
+    const codes = sortCodebase(
     parsedProjects.map((item) => item.project),
     "startDate-newest",
   );
@@ -39,7 +40,8 @@ export default function App() {
             <Route index element={<HomePage />} />
             <Route path="team" element={<TeamPage  />} />
             <Route path="contact" element={<ContactPage />} />
-            <Route path="projects" element={<Projects projects={projects} />} />
+            <Route path="codebases" element={<Codebase codes={codes} />} />
+            <Route path="Projects" element={<ProjectsPage />} />
             <Route path="games" element={<CyberGauntlet />} />
             <Route path="publications" element={<PublicationsPage />} />
             <Route path="research" element={<ResearchPage />} />

@@ -25,7 +25,7 @@ export interface RepositoryPageMeta {
   content: string;
 }
 
-export interface ProjectMeta {
+export interface CodebaseMeta {
   slug: string;
   title: string;
   shortDescription: string;
@@ -66,6 +66,32 @@ export interface ParsedRepositoryDocument {
 
 export interface ParsedProjectData {
   repository: RepositoryPageMeta;
-  project: ProjectMeta;
+  project: CodebaseMeta;
   document: ParsedRepositoryDocument;
+}
+
+export interface ProjectCodebaseRef {
+  slug: string;
+  title: string;
+}
+
+export interface ProjectSubProject {
+  title: string;
+  description: string;
+  researchFocus: string[];
+  codebases?: ProjectCodebaseRef[];
+}
+
+export interface ProjectData {
+  slug: string;
+  title: string;
+  description: string;
+  mainObjectives: string[];
+  subProjects: ProjectSubProject[];
+  relatedProjects?: string[];
+  figures?: string[];
+}
+
+export interface ProjectsPageData {
+  projects: ProjectData[];
 }

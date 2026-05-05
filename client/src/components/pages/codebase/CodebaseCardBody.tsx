@@ -1,11 +1,11 @@
 import { Box, Link, Typography } from "@mui/material";
-import type { ProjectMeta } from "../../../types";
+import type { CodebaseMeta } from "../../../types";
 
 interface ProjectCardBodyProps {
-  project: ProjectMeta;
+  project: CodebaseMeta;
 }
 
-export default function ProjectCardBody({ project }: ProjectCardBodyProps) {
+export default function CodebaseCardBody({ project }: ProjectCardBodyProps) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Typography

@@ -1,12 +1,12 @@
 import { Box, Button, Divider } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import type { ProjectMeta } from "../../../types";
+import type { CodebaseMeta } from "../../../types";
 
 interface ProjectCardFooterProps {
-  project: ProjectMeta;
+  project: CodebaseMeta;
 }
 
-export default function ProjectCardFooter({ project }: ProjectCardFooterProps) {
+export default function CodebaseCardFooter({ project }: ProjectCardFooterProps) {
   return (
     <Box sx={{ mt: "auto" }}>
       <Divider sx={{ mb: 1.25 }} />

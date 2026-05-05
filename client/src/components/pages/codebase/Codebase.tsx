@@ -8,20 +8,20 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import ProjectCard from "./ProjectCard";
-import type { ProjectMeta } from "../../../types";
-import { sortProjects, type ProjectSortMode } from "../../../utils/sortProjects";
+import ProjectCard from "./CodebaseCard";
+import type { CodebaseMeta } from "../../../types";
+import { sortCodebase, type CodebaseSortMode } from "../../../utils/sortCodebase";
 
 interface ProjectsProps {
-  projects: ProjectMeta[];
+  codes: CodebaseMeta[];
 }
 
-export default function Projects({ projects }: ProjectsProps) {
-  const [sortMode, setSortMode] = useState<ProjectSortMode>("startDate-newest");
+export default function Codebase({ codes }: ProjectsProps) {
+  const [sortMode, setSortMode] = useState<CodebaseSortMode>("startDate-newest");
 
   const sortedProjects = useMemo(
-    () => sortProjects(projects, sortMode),
-    [projects, sortMode]
+    () => sortCodebase(codes, sortMode),
+    [codes, sortMode]
   );
 
   return (
@@ -38,7 +38,7 @@ export default function Projects({ projects }: ProjectsProps) {
           color="text.secondary"
           sx={{ maxWidth: 760, mx: "auto" }}
         >
-          Explore the available project repositories and related materials.
+          Explore the available codeBase repositories and related materials.
         </Typography>
       </Box>
 
@@ -55,7 +55,7 @@ export default function Projects({ projects }: ProjectsProps) {
             labelId="project-sort-label"
             value={sortMode}
             label="Sort by"
-            onChange={(e) => setSortMode(e.target.value as ProjectSortMode)}
+            onChange={(e) => setSortMode(e.target.value as CodebaseSortMode)}
           >
             <MenuItem value="startDate-newest">Newest first</MenuItem>
             <MenuItem value="startDate-oldest">Oldest first</MenuItem>

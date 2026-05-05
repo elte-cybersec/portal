@@ -1,7 +1,7 @@
 import type {
   ParsedPortalMetadata,
   ParsedProjectData,
-  ProjectMeta,
+  CodebaseMeta,
   RepositoryPageMeta,
 } from "../types";
 import { parseRepositoryDocument } from "./parseRepositoryDocument";
@@ -19,10 +19,10 @@ function resolveProjectSlug(
   return metadata.slug?.trim() || repo.fileSlug;
 }
 
-function buildProjectMeta(
+function buildCodebaseMeta(
   repo: RepositoryPageMeta,
   metadata: ParsedPortalMetadata,
-): ProjectMeta {
+): CodebaseMeta {
   const resolvedSlug = resolveProjectSlug(repo, metadata);
 
   return {
@@ -39,12 +39,12 @@ function buildProjectMeta(
   };
 }
 
-export function getParsedProjects(
+export function getParsedCodebase(
   repositoryPages: RepositoryPageMeta[],
 ): ParsedProjectData[] {
   return repositoryPages.map((repo) => {
     const document = parseRepositoryDocument(repo.content);
-    const project = buildProjectMeta(repo, document.metadata);
+    const project = buildCodebaseMeta(repo, document.metadata);
 
     return {
       repository: repo,

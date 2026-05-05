@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
-import type { ProjectMeta } from "../../../types";
+import type { CodebaseMeta } from "../../../types";
 import { resolveAssetPath } from "../../../utils/resolveAssetPath";
 
 interface ProjectCardHeaderProps {
-  project: ProjectMeta;
+  project: CodebaseMeta;
 }
 
-export default function ProjectCardHeader({
+export default function CodebaseCardHeader({
   project,
 }: ProjectCardHeaderProps) {
   const logosToShow = project.logos?.slice(0, 2) ?? [];

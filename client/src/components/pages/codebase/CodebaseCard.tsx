@@ -1,14 +1,14 @@
 import { Card, Box } from "@mui/material";
-import type { ProjectMeta } from "../../../types";
-import ProjectCardHeader from "./ProjectCardHeader";
-import ProjectCardBody from "./ProjectCardBody";
-import ProjectCardFooter from "./ProjectCardFooter";
+import type { CodebaseMeta } from "../../../types";
+import CodebaseCardHeader from "./CodebaseCardHeader";
+import CodebaseCardBody from "./CodebaseCardBody";
+import CodebaseCardFooter from "./CodebaseCardFooter";
 
 interface ProjectCardProps {
-  project: ProjectMeta;
+  project: CodebaseMeta;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function CodebaseCard({ project }: ProjectCardProps) {
   return (
     <Card
       sx={(theme) => ({
@@ -42,9 +42,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           gap: 1.5,
         }}
       >
-        <ProjectCardHeader project={project} />
-        <ProjectCardBody project={project} />
-        <ProjectCardFooter project={project} />
+        <CodebaseCardHeader project={project} />
+        <CodebaseCardBody project={project} />
+        <CodebaseCardFooter project={project} />
       </Box>
     </Card>
   );

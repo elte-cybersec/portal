@@ -4,6 +4,7 @@ export interface NavigationItem {
 }
 
 export const navigationItems: NavigationItem[] = [
+  { label: "CodeBases", path: "/codebases" },
   { label: "Projects", path: "/projects" },
   { label: "Research", path: "/research" },
   { label: "Operations", path: "/operations" },

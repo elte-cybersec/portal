@@ -1,6 +1,6 @@
-import type { ProjectMeta } from "../types";
+import type { CodebaseMeta } from "../types";
 
-export type ProjectSortMode =
+export type CodebaseSortMode =
   | "title-asc"
   | "title-desc"
   | "startDate-newest"
@@ -13,11 +13,11 @@ function toSortableTime(date?: string): number {
   return Number.isNaN(time) ? 0 : time;
 }
 
-export function sortProjects(
-  projects: ProjectMeta[],
-  mode: ProjectSortMode = "title-asc",
-): ProjectMeta[] {
-  const sorted = [...projects];
+export function sortCodebase(
+  codes: CodebaseMeta[],
+  mode: CodebaseSortMode = "title-asc",
+): CodebaseMeta[] {
+  const sorted = [...codes];
 
   switch (mode) {
     case "title-desc":
