@@ -40,9 +40,7 @@ export const projectsPageData: ProjectsPageData = {
             "Protection against attacks targeting network exposure functions and service interfaces.",
             "Performance-aware WAF deployment in edge and core environments.",
           ],
-          codebases: [
-            { slug: "full-5g-implementation", title: "Full 5G Implementation" },
-          ],
+          codebases: ["5G"],
         },
         {
           title: "Rogue UE Detection",
@@ -85,12 +83,7 @@ export const projectsPageData: ProjectsPageData = {
             "Performance optimization for MPC-enabled learning.",
             "Application to telecom, cloud, and compliance-sensitive datasets.",
           ],
-          codebases: [
-            {
-              slug: "mpc-based-federated-learning-with-spdz",
-              title: "MPC-based Federated Learning with SPDZ",
-            },
-          ],
+          codebases: ["MPC", "SPDZ"],
         },
         {
           title: "Secure Aggregation",
@@ -103,12 +96,7 @@ export const projectsPageData: ProjectsPageData = {
             "Privacy protection against inference and reconstruction attacks.",
             "Lightweight protocols for resource-constrained devices.",
           ],
-          codebases: [
-            {
-              slug: "secure-federated-averaging",
-              title: "Secure Federated Averaging",
-            },
-          ],
+          codebases: ["Secure Federated Averaging"],
         },
       ],
       figures: [],
@@ -138,16 +126,7 @@ export const projectsPageData: ProjectsPageData = {
             "Compliance evidence collection from logs, policies, and system configurations.",
             "Privacy-aware monitoring of cloud, network, and ML systems.",
           ],
-          codebases: [
-            {
-              slug: "gdpr-compliant-iiot-data-encryption-with-cp-abe-and-ipfs",
-              title: "GDPR-Compliant IIoT Data Encryption with CP-ABE and IPFS",
-            },
-            {
-              slug: "proverif-docker-setup-and-usage",
-              title: "ProVerif Docker Setup and Usage",
-            },
-          ],
+          codebases: ["GDPR", "ProVerif"],
         },
       ],
       figures: [],
@@ -177,12 +156,7 @@ export const projectsPageData: ProjectsPageData = {
             "Role-based and attribute-based access control.",
             "Monitoring and auditing authentication events.",
           ],
-          codebases: [
-            {
-              slug: "keystone-authentication-mechanisms-in-openstack",
-              title: "Keystone Authentication Mechanisms in OpenStack",
-            },
-          ],
+          codebases: ["Keystone"],
         },
         {
           title: "Dynamic Token Lifetime",

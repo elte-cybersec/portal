@@ -79,9 +79,9 @@ export interface ProjectSubProject {
   title: string;
   description: string;
   researchFocus: string[];
-  codebases?: ProjectCodebaseRef[];
+  codebases?: string[];
 }
-
+ 
 export interface ProjectData {
   slug: string;
   title: string;
@@ -91,7 +91,8 @@ export interface ProjectData {
   relatedProjects?: string[];
   figures?: string[];
 }
-
+ 
 export interface ProjectsPageData {
   projects: ProjectData[];
 }
+ 

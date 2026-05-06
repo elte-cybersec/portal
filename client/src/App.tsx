@@ -41,7 +41,10 @@ export default function App() {
             <Route path="team" element={<TeamPage  />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="codebases" element={<Codebase codes={codes} />} />
-            <Route path="Projects" element={<ProjectsPage />} />
+            <Route
+              path="Projects"
+              element={<ProjectsPage codebases={codes} />}
+            />
             <Route path="games" element={<CyberGauntlet />} />
             <Route path="publications" element={<PublicationsPage />} />
             <Route path="research" element={<ResearchPage />} />
