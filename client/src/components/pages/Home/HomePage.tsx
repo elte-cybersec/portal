@@ -1,14 +1,16 @@
 import { useRef } from "react";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import HomeHeroCanvas from "./HomeHeroCanvas";
 import HomeHeroOverlay from "./HomeHeroOverlay";
 import HomeHeroTooltip from "./HomeHeroTooltip";
 import HomeResearchSection from "./HomeResearchSection";
-import { HERO_HEIGHT, HOME_THEME } from "./homePage-model";
+import { HERO_HEIGHT, HOME_THEME_DARK, HOME_THEME_LIGHT } from "./homePage-model";
 
 export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
+  const theme = useTheme();
+  const palette = theme.palette.mode === "dark" ? HOME_THEME_DARK : HOME_THEME_LIGHT;
 
   return (
     <Box
@@ -16,7 +18,7 @@ export default function HomePage() {
       sx={{
         position: "relative",
         width: "100%",
-        background: HOME_THEME.bg,
+        background: palette.bg,
         borderRadius: "12px",
         overflow: "hidden",
         fontFamily: "var(--font-sans, system-ui, sans-serif)",
@@ -33,8 +35,8 @@ export default function HomePage() {
           pointerEvents: "none",
         }}
       >
-        <HomeHeroCanvas heroRef={heroRef} tooltipRef={tooltipRef} />
-        <HomeHeroTooltip ref={tooltipRef} />
+        <HomeHeroCanvas heroRef={heroRef} tooltipRef={tooltipRef} palette={palette} />
+        <HomeHeroTooltip ref={tooltipRef} palette={palette} />
       </Box>
 
       <Box
@@ -46,7 +48,7 @@ export default function HomePage() {
           flexDirection: "column",
         }}
       >
-        <HomeHeroOverlay />
+        <HomeHeroOverlay palette={palette} />
         <HomeResearchSection />
       </Box>
     </Box>

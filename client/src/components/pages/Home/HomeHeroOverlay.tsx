@@ -1,13 +1,18 @@
 import { Box, Button, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import { HERO_STATS, HOME_THEME } from "./homePage-model";
+import { HERO_STATS_FOR, type HomePalette } from "./homePage-model";
 import { MainTitle } from "../../../data/HomePageData";
 
-export default function HomeHeroOverlay() {
+interface HomeHeroOverlayProps {
+  palette: HomePalette;
+}
+
+export default function HomeHeroOverlay({ palette }: HomeHeroOverlayProps) {
   const words = MainTitle.split(" ");
   const mid = Math.ceil(words.length / 2);
   const firstHalf = words.slice(0, mid).join(" ");
   const secondHalf = words.slice(mid).join(" ");
+  const stats = HERO_STATS_FOR(palette);
 
   return (
     <Box
@@ -29,7 +34,7 @@ export default function HomeHeroOverlay() {
         sx={{
           fontSize: "clamp(1rem, 2.5vw, 1.6rem)",
           fontWeight: 500,
-          color: HOME_THEME.textPrimary,
+          color: palette.textPrimary,
           lineHeight: 1.4,
           m: 0,
           maxWidth: 600,
@@ -39,8 +44,9 @@ export default function HomeHeroOverlay() {
         <Box
           component="span"
           sx={{
-            color: "primary.light",
+            color: palette.accentItalic,
             fontStyle: "italic",
+            fontWeight: 600,
           }}
         >
           {secondHalf}
@@ -48,7 +54,7 @@ export default function HomeHeroOverlay() {
       </Typography>
 
       <Box sx={{ display: "flex", gap: 2.5, mt: 0.5 }}>
-        {HERO_STATS.map(({ dot, label }) => (
+        {stats.map(({ dot, label }) => (
           <Box
             key={label}
             sx={{ display: "flex", alignItems: "center", gap: 0.75 }}
@@ -66,7 +72,7 @@ export default function HomeHeroOverlay() {
               component="span"
               sx={{
                 fontSize: 11,
-                color: HOME_THEME.textDim,
+                color: palette.textDim,
                 fontFamily: "monospace",
               }}
             >

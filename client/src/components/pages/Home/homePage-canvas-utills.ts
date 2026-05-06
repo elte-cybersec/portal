@@ -1,13 +1,19 @@
-// import { HOME_THEME } from "./homePage-model";
-import type { Edge, MousePosition, NetworkNode, Packet } from "./homePage-model";
+import type {
+  Edge,
+  HomePalette,
+  MousePosition,
+  NetworkNode,
+  Packet,
+} from "./homePage-model";
 
 export function drawGrid(
   context: CanvasRenderingContext2D,
   width: number,
-  height: number
+  height: number,
+  palette: HomePalette
 ) {
   context.save();
-  context.strokeStyle = "rgba(29,158,117,0.04)";
+  context.strokeStyle = palette.gridStroke;
   context.lineWidth = 0.5;
 
   const gridSize = 60;
@@ -90,7 +96,8 @@ export function drawEdges(
   context: CanvasRenderingContext2D,
   edges: Edge[],
   nodes: NetworkNode[],
-  threatNodeIds: Set<number>
+  threatNodeIds: Set<number>,
+  palette: HomePalette
 ) {
   edges.forEach((edge) => {
     const a = nodes[edge.a];
@@ -106,10 +113,10 @@ export function drawEdges(
     context.lineTo(b.x, b.y);
 
     context.strokeStyle = nearThreat
-      ? `rgba(163,45,45,${alpha})`
+      ? palette.edgeThreat(alpha)
       : edge.encrypted
-        ? `rgba(127,119,221,${alpha})`
-        : `rgba(29,158,117,${alpha})`;
+        ? palette.edgeEncrypted(alpha)
+        : palette.edgeNeutral(alpha);
 
     context.lineWidth = edge.encrypted ? 1 : 0.5;
     context.setLineDash(edge.encrypted ? [4, 6] : []);
@@ -150,7 +157,8 @@ export function updateAndDrawPackets(
 export function drawMousePulse(
   context: CanvasRenderingContext2D,
   mouse: MousePosition,
-  frame: number
+  frame: number,
+  palette: HomePalette
 ) {
   if (mouse.x <= 0) return;
 
@@ -162,7 +170,7 @@ export function drawMousePulse(
     0,
     Math.PI * 2
   );
-  context.strokeStyle = "rgba(163,45,45,0.2)";
+  context.strokeStyle = palette.mousePulseRing;
   context.lineWidth = 0.5;
   context.setLineDash([3, 6]);
   context.stroke();
@@ -170,7 +178,7 @@ export function drawMousePulse(
 
   context.beginPath();
   context.arc(mouse.x, mouse.y, 4, 0, Math.PI * 2);
-  context.fillStyle = "rgba(163,45,45,0.5)";
+  context.fillStyle = palette.mousePulseDot;
   context.fill();
 }
 
@@ -199,7 +207,8 @@ export function drawNodes(
   context: CanvasRenderingContext2D,
   nodes: NetworkNode[],
   hoveredNode: NetworkNode | null,
-  frame: number
+  frame: number,
+  palette: HomePalette
 ) {
   nodes.forEach((node) => {
     const pulse = Math.sin(frame * 0.04 + node.pulseOffset) * 0.3 + 0.7;
@@ -209,7 +218,7 @@ export function drawNodes(
     if (node.threat) {
       context.beginPath();
       context.arc(node.x, node.y, radius * 2.5, 0, Math.PI * 2);
-      context.strokeStyle = `rgba(163,45,45,${0.2 * pulse})`;
+      context.strokeStyle = palette.edgeThreat(0.2 * pulse);
       context.lineWidth = 1;
       context.stroke();
     }

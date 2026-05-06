@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { INITIAL_MOUSE_POSITION } from "./homePage-model";
+import { INITIAL_MOUSE_POSITION, type HomePalette } from "./homePage-model";
 import { createEdges, createNodes, createPacket } from "./homePage-utils";
 import {
   drawEdges,
@@ -17,11 +17,13 @@ import type { Edge, NetworkNode, Packet } from "./homePage-model";
 interface HomeHeroCanvasProps {
   heroRef: React.RefObject<HTMLDivElement | null>;
   tooltipRef: React.RefObject<HTMLDivElement | null>;
+  palette: HomePalette;
 }
 
 export default function HomeHeroCanvas({
   heroRef,
   tooltipRef,
+  palette,
 }: HomeHeroCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouse = useRef({ ...INITIAL_MOUSE_POSITION });
@@ -30,6 +32,11 @@ export default function HomeHeroCanvas({
   const edges = useRef<Edge[]>([]);
   const packets = useRef<Packet[]>([]);
   const animationFrameRef = useRef<number | null>(null);
+  const paletteRef = useRef(palette);
+
+  useEffect(() => {
+    paletteRef.current = palette;
+  }, [palette]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -77,17 +84,18 @@ export default function HomeHeroCanvas({
 
       const width = currentCanvas.width;
       const height = currentCanvas.height;
+      const currentPalette = paletteRef.current;
 
       frame.current += 1;
 
       ctx.clearRect(0, 0, width, height);
 
-      drawGrid(ctx, width, height);
+      drawGrid(ctx, width, height, currentPalette);
       updateNodes(nodes.current, mouse.current, width, height);
 
       const threatNodeIds = getThreatNodeIds(nodes.current, mouse.current);
 
-      drawEdges(ctx, edges.current, nodes.current, threatNodeIds);
+      drawEdges(ctx, edges.current, nodes.current, threatNodeIds, currentPalette);
 
       if (frame.current % 90 === 0 && packets.current.length < 20) {
         const packet = createPacket(edges.current);
@@ -97,11 +105,11 @@ export default function HomeHeroCanvas({
       }
 
       updateAndDrawPackets(ctx, packets.current, nodes.current);
-      drawMousePulse(ctx, mouse.current, frame.current);
+      drawMousePulse(ctx, mouse.current, frame.current, currentPalette);
 
       const hoveredNode = getClosestNode(nodes.current, mouse.current);
 
-      drawNodes(ctx, nodes.current, hoveredNode, frame.current);
+      drawNodes(ctx, nodes.current, hoveredNode, frame.current, currentPalette);
       syncTooltip(tooltipRef.current, hoveredNode, mouse.current);
 
       animationFrameRef.current = requestAnimationFrame(render);
